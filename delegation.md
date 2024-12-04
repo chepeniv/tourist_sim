@@ -14,6 +14,7 @@
 - [ ] CSS
 - [ ] Jquery
 - [ ] Sucess, Failure Popups
+- [ ] Slide show!
 ## extra
 - [ ] Random Generator
 - [ ] Diaglog
