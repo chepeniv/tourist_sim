@@ -18,30 +18,41 @@ body {
 
 .main-container {
     display: relative;
-    width: 66.67%;
-    aspect-ratio: 1 / 1;
-    background-color: #8f959f;
+    height: 80%;
+    aspect-ratio: 1/1;
+    background-color: #000000;
+    margin: 0 auto;
+    color: white;
+}
+
+.submain-container {
+    display: relative;
+    aspect-ratio: 1/1;
+    background-color: grey;
+    height: 80%;
     margin: 0 auto;
 }
 
 .small-container {
     display: relative;
     position: fixed;
-    top: 60px;
-    right: 20px;
+    right: 10px;
+    margin-left: 0 auto;
     background-color: #b56767;
-    padding: 10px;
+    padding: 20px;
+    max-width: 100px;
+    justify-content: right;
 }
 
 .bottom-container {
     display: relative;
     justify-content: center;
     align-items: center;
-    width: 66.67%;
-    height: 20vh;
+    height: 20%;
     background-color: aqua;
-    margin: 0 auto;
+    margin: auto auto;
     margin-top: 20px;
     border-radius: 50px;
     text-align: center;
+    flex
 }
