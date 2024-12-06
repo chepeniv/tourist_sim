@@ -99,9 +99,11 @@ def maze_to_json(maze):
         else:
             ValueError()
 
+    return [[cell_to_number(cell) for cell in row] for row in maze]
+
 generate_maze()
 
 serialized_maze = maze_to_json(grid_cells)
 
 with open('mazes.json', 'w') as f:
-    json.dump(serialized_maze, f, indent=2)
+    json.dump(serialized_maze, f)
