@@ -1,60 +1,75 @@
+/* html { */
+/* 	height: 100%; */
+/* } */
+
 body {
-    margin: 0;
-    padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.header {
-    background-color: #ffffff;
-    padding: 20px;
-    text-align: center;
+.banner {
+	text-align: center;
 }
 
-.main {
-    display: flex;
-    flex-direction: column;
-    height: 80vh;
-}
-
-div {
-    display: relative;
-    height: 80%;
-    aspect-ratio: 1/1;
-    background-color: #000000;
-    margin: 0 auto;
-    color: white;
+.game { 
+	display: grid;
+	grid-template: auto auto auto / auto auto auto; 
+	border: 1px solid black;
 }
 
 .map {
-    display: relative;
-    aspect-ratio: 1/1;
-    background-color: grey;
-    height: 80%;
-    margin: 0 auto;
-
-	.block {
-	}
+	grid-row: 1;
+	grid-column: 2; 
+	aspect-ratio: 1/1;
+	width: 100%;
+	border: 1px solid green;
 }
 
-.stats {
-    display: relative;
-    position: fixed;
-    right: 10px;
-    margin-left: 0 auto;
-    background-color: #b56767;
-    padding: 20px;
-    max-width: 100px;
-    justify-content: right;
+.map-bg {
+}
+
+.maze {
+}
+
+.block {
 }
 
 .encounter {
-    display: relative;
-    justify-content: center;
-    align-items: center;
-    height: 20%;
-    background-color: aqua;
-    margin: auto auto;
-    margin-top: 20px;
-    border-radius: 50px;
-    text-align: center;
+	grid-row: 2;
+	grid-column: 2;
+	aspect-ratio: 3/1;
+	border: 1px solid blue;
+	width: 100%;
+}
+
+.dialogue {
+}
+
+.options {
+}
+
+.stats-box {
+	grid-row: 1;
+	grid-column: 3;
+	padding: 0px 5% 10px;
+	margin-left: 10%;
+	margin-right: auto;
+	width: 50%;
+	height: 15%;
+	min-height: 100px;
+	border: 1px solid red;
+
+	h3 {
+		margin: 1px;
+	}
+
+	h4 {
+		margin: 1px;
+	}
+}
+
+.stat {
+	height: 15%;
+	background-color: red;
+	margin: 1px;
+	padding: 0px;
 }
