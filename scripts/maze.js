@@ -1,19 +1,28 @@
 #!/usr/bin/node
 /* global $ */
 
-function buildRow (size) {
-  $('.maze').append('<tr class="row"></tr>');
+const mazeSize = 16;
+
+function buildRow (size, i) {
+  $('.maze').append(`<tr class="row r${i}"></tr>`);
   for (let i = 0; i < size; i++) {
-    $('tr').last().append('<td class="block"></td>');
+    $('tr').last().append(`<td class="block b${i}"></td>`);
   }
 }
 
 function buildMazeGrid (size) {
   for (let i = 0; i < size; i++) {
-    buildRow(size);
+    buildRow(size, i);
   }
 }
 
+function setEntry (size) {
+  const entry = Math.floor(Math.random() * size);
+  const row = `.r${entry} .b0`;
+  $(row).addClass('player_pos');
+}
+
 $(function () {
-  buildMazeGrid(16);
+  buildMazeGrid(mazeSize);
+  setEntry(mazeSize);
 });
