@@ -25,7 +25,7 @@
 	- [ ] obstacles
 	- [ ] city layouts
 
-## maze
+### maze
 
 - [ ] build grid
 - [ ] implement movement and feedback
@@ -38,6 +38,13 @@
 - [ ] make handcrafted map
 - [ ] implement handcrafted map
 - [ ] implement map transformation
+
+### maze generator
+
+- [ ] 12x12 format being generated
+- [ ] one entrance and then one exit on each side
+- [ ] implement a maze algorithm
+- [ ] have it output json data to mazes.json
 
 ## extra
 
