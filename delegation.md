@@ -29,8 +29,9 @@
 - [ ] implement movement and feedback
 - [ ] implement map edge detection
 - [ ] make cross map
-- [ ] make ally way
 - [ ] implement block types
+	- [ ] path, exit, enter, dead-end
+- [ ] make dead-end
 - [ ] standardize map file layout
 - [ ] make handcrafted map
 - [ ] implement handcrafted map

@@ -4,7 +4,7 @@
 	- encounters layout:
 		- title
 		- character name
-		- dialog
+		- dialogue
 		- responses
 			- good, bad, neutral
 		- consequences
