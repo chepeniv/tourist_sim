@@ -32,15 +32,25 @@ $(function () {
   setEntry(mazeSize);
 
   $('html').bind('keyup', function (e) {
-    if (e.keyCode === right) {
-      const oldPos = $('.player_pos');
-      oldPos.toggleClass('player_pos');
-      oldPos.next().toggleClass('player_pos');
+    if (e.keyCode < left || down < e.keyCode) {
+      return;
     }
-    if (e.keyCode === left) {
-      const oldPos = $('.player_pos');
-      oldPos.toggleClass('player_pos');
+
+    const oldPos = $('.player_pos');
+    const index = oldPos.index();
+    const rowIndex = oldPos.parent().index();
+    oldPos.toggleClass('player_pos');
+
+    if (e.keyCode === right) {
+      oldPos.next().toggleClass('player_pos');
+    } else if (e.keyCode === left) {
       oldPos.prev().toggleClass('player_pos');
+    } else if (e.keyCode === up) {
+      const newPos = `.${rowIndex - 1} .${index}`;
+      $(newPos).toggleClass('player_pos');
+    } else {
+      const newPos = `.${rowIndex + 1} .${index}`;
+      $(newPos).toggleClass('player_pos');
     }
   });
 });
