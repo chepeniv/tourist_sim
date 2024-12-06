@@ -8,6 +8,8 @@
 
 ## queue
 
+- [ ] write out outline for maze building algorithm
+- [ ] write out encounters ideas
 - [ ] Craft Maze
 - [ ] Craft Encounter
 - [ ] Stat Management
@@ -35,11 +37,12 @@
 - [ ] standardize map file layout
 - [ ] make handcrafted map
 - [ ] implement handcrafted map
+- [ ] implement map transformation
 
 ## extra
 
 - [ ] Random Generator
-- [ ] Diaglog
+- [ ] Dialogue
 - [ ] Outcomes
 - [ ] More stats like being positioned and such
 - [ ] Characters

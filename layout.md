@@ -22,7 +22,15 @@
 
 ## backend
 
-- `maze_builder.py`
+- `maze_generator.py`
+	- output maze file
+- `map_builder.py`
+	- read/get maze data
+	- add transformations
+	- add background
+	- add images
+	- add encounters
+	- output map file ?
 
 ## tools
 
