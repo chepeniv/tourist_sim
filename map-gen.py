@@ -15,7 +15,7 @@ class Cell:
         self.visited = False
 
     def check_cell(self, x, y):
-        find_index = lamba x, y: x + y * cols
+        find_index = lambda x, y: x + y * cols
         if x < 0 or x > cols-1 or y < 0 or y > rows-1:
             return False
         return grid_cells[find_index(x, y)]
