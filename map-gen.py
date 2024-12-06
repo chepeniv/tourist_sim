@@ -1,17 +1,8 @@
 #!/usr/bin/python3
 from random import choice
 import json
-# find a depth-first search algorithm to make a maze
 
-# convert the generated maze into a binary tree
-# (possibly not needed if the algorithm already does this)
 
-# use the binary tree data structure to make an array of numbers based on the layout
-# (see the photo in slack for what 0-9 mean)
-
-# make it jsonifyable
-
-#export the json into mazes.json
 size = 12
 cols = size
 rows = size
@@ -107,3 +98,4 @@ serialized_maze = maze_to_json(grid_cells)
 
 with open('mazes.json', 'w') as f:
     json.dump(serialized_maze, f)
+    
