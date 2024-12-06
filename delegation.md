@@ -23,12 +23,24 @@
 	- [ ] obstacles
 	- [ ] city layouts
 
+## maze
+
+- [ ] build grid
+- [ ] implement movement and feedback
+- [ ] implement map edge detection
+- [ ] make cross map
+- [ ] make ally way
+- [ ] implement block types
+- [ ] standardize map file layout
+- [ ] make handcrafted map
+- [ ] implement handcrafted map
+
 ## extra
 
 - [ ] Random Generator
 - [ ] Diaglog
 - [ ] Outcomes
-- [ ] More stats like being posioned and such
+- [ ] More stats like being positioned and such
 - [ ] Characters
 - [ ] Images
 
