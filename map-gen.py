@@ -98,4 +98,3 @@ serialized_maze = maze_to_json(grid_cells)
 
 with open('mazes.json', 'w') as f:
     json.dump(serialized_maze, f)
-    
