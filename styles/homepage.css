@@ -10,13 +10,13 @@ body {
     text-align: center;
 }
 
-.container {
+.main {
     display: flex;
     flex-direction: column;
     height: 80vh;
 }
 
-.main-container {
+div {
     display: relative;
     height: 80%;
     aspect-ratio: 1/1;
@@ -25,15 +25,18 @@ body {
     color: white;
 }
 
-.submain-container {
+.map {
     display: relative;
     aspect-ratio: 1/1;
     background-color: grey;
     height: 80%;
     margin: 0 auto;
+
+	.block {
+	}
 }
 
-.small-container {
+.stats {
     display: relative;
     position: fixed;
     right: 10px;
@@ -44,7 +47,7 @@ body {
     justify-content: right;
 }
 
-.bottom-container {
+.encounter {
     display: relative;
     justify-content: center;
     align-items: center;
