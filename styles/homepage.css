@@ -40,17 +40,6 @@ body {
 	width: 100%;
 }
 
-.block {
-	aspect-ratio: 1/1;
-	/* background-color: lightyellow; */
-	border: 1px solid pink;
-}
-
-.player_pos {
-	border: none;
-	background-color: orange;
-}
-
 .encounter {
 	grid-row: 3;
 	grid-column: 3;
@@ -90,4 +79,32 @@ body {
 	background-color: red;
 	margin: 1px;
 	padding: 0px;
+}
+
+/******** maze drawing ********/
+
+.block {
+	aspect-ratio: 1/1;
+	border: 1px solid pink;
+}
+
+.bound-left {
+	box-shadow: 4px 0px 0px 0px yellow inset;
+}
+
+.bound-top {
+	box-shadow: 0px 4px 0px 0px violet inset;
+}
+
+.bound-right {
+	box-shadow: -4px 0px 0px 0px tomato inset;
+}
+
+.bound-bottom {
+	box-shadow: 0px -4px 0px 0px springgreen inset;
+}
+
+.player_pos {
+	border: none;
+	background-color: orange;
 }

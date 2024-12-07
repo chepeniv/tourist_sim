@@ -1,6 +1,12 @@
 #!/usr/bin/node
 /* global $ */
 
+// TASK
+// implement key hold down
+// implement map bounds
+// implement exit blocks
+// implement padding on entry and exit blocks
+
 const mazeSize = 16;
 
 // key codes
@@ -11,7 +17,7 @@ const down = 40;
 
 // block type definitions
 const horHall = 0;
-const vertHall = 1;
+const verHall = 1;
 const deadEndDown = 2;
 const deadEndLeft = 3;
 const deadEndUp = 4;
@@ -21,10 +27,29 @@ const cornerUpRight = 7;
 const cornerDownRight = 8;
 const cornerDownLeft = 9;
 
-function buildRow (size, i) {
-  $('.maze').append(`<tr class="row ${i}"></tr>`);
-  for (let i = 0; i < size; i++) {
-    $('tr').last().append(`<td class="block ${i}"></td>`);
+// temporary: suppressing errors
+console.log(horHall, verHall, deadEndDown, deadEndUp, deadEndLeft, deadEndRight);
+console.log(cornerUpRight, cornerUpLeft, cornerDownLeft, cornerDownRight);
+
+function buildRow (size, y) {
+  $('.maze').append(`<tr class="row ${y}"></tr>`);
+  const lastRow = $('tr').last();
+
+  for (let x = 0; x < size; x++) {
+    lastRow.append(`<td class="block ${x}"></td>`);
+    const lastBlock = lastRow.children().last();
+    if (y === 0) {
+      lastBlock.addClass('bound-top');
+    }
+    if (y === size - 1) {
+      lastBlock.addClass('bound-bottom');
+    }
+    if (x === 0) {
+      lastBlock.addClass('bound-left');
+    }
+    if (x === size - 1) {
+      lastBlock.addClass('bound-right');
+    }
   }
 }
 
@@ -34,7 +59,6 @@ function buildMazeGrid (size) {
   }
 }
 
-// create random entry point on left edge
 function setEntry (size) {
   const entry = Math.floor(Math.random() * size);
   const row = `.${entry} .0`;
