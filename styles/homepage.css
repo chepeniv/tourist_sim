@@ -4,40 +4,59 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+	/* background-color: #BBBBBB; */
 }
 
 .banner {
 	text-align: center;
 }
 
-.game { 
+.game {
 	display: grid;
-	grid-template: auto auto auto / auto auto auto; 
+	grid-template: auto auto auto / auto auto auto;
 	border: 1px solid black;
+	margin: auto;
+	width: 80vw;
 }
 
 .map {
-	grid-row: 1;
-	grid-column: 2; 
+	grid-row: 1 / span 3;
+	grid-column: 1 / span 2;
 	aspect-ratio: 1/1;
-	width: 100%;
 	border: 1px solid green;
+	padding: 0px;
 }
 
 .map-bg {
 }
 
 .maze {
+	width: 100%;
+	height: 100%;
+	border-collapse: collapse;
+}
+
+.row {
+	width: 100%;
 }
 
 .block {
+	aspect-ratio: 1/1;
+	/* background-color: lightyellow; */
+	border: 1px solid pink;
+}
+
+.player_pos {
+	border: none;
+	background-color: orange;
 }
 
 .encounter {
-	grid-row: 2;
-	grid-column: 2;
-	aspect-ratio: 3/1;
+	grid-row: 3;
+	grid-column: 3;
+	aspect-ratio: 3/2;
 	border: 1px solid blue;
+	left: 0px;
 	width: 100%;
 }
 
@@ -51,9 +70,8 @@ body {
 	grid-row: 1;
 	grid-column: 3;
 	padding: 0px 5% 10px;
-	margin-left: 10%;
-	margin-right: auto;
-	width: 50%;
+	margin: auto;
+	width: 90%;
 	height: 15%;
 	min-height: 100px;
 	border: 1px solid red;
