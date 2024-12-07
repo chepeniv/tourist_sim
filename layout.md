@@ -24,6 +24,7 @@
 
 - `maze_generator.py`
 	- output maze file
+
 - `map_builder.py`
 	- read/get maze data
 	- add transformations
