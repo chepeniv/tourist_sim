@@ -2,7 +2,6 @@
 /* global $ */
 
 // TASK
-// implement key hold down
 // implement block types
 
 // const fs = require('fs');
@@ -141,7 +140,7 @@ function moveDown (oldPos) {
 $(function () {
   buildMazeGrid(mazeSize);
 
-  $('html').bind('keyup', function (e) {
+  $('html').keydown(function (e) {
     if (e.keyCode < left || down < e.keyCode) {
       return;
     }
