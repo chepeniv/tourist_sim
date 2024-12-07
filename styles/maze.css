@@ -64,6 +64,28 @@
 	box-shadow: none;
 }
 
+/******** walls drawing ********/
+
+.no-wall {
+	/* box-shadow: none; */
+}
+
+.bottom-wall {
+	box-shadow: 0px -6px 0px 0px black inset;
+}
+
+.top-wall {
+	box-shadow: 0px 6px 0px 0px black inset;
+}
+
+.right-wall {
+	box-shadow: -6px 0px 0px 0px black inset;
+}
+
+.left-wall {
+	box-shadow: 6px 0px 0px 0px black inset;
+}
+
 /******** player block ********/
 
 .player-pos {

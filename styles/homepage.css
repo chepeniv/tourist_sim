@@ -8,10 +8,10 @@ body {
 
 .game {
 	display: grid;
-	grid-template: auto auto auto / auto auto auto;
+	grid-template: auto auto auto / auto auto 30%;
 	border: 1px solid black;
 	margin: auto;
-	width: 75vw;
+	width: 70vw;
 }
 
 .map {
@@ -20,6 +20,7 @@ body {
 	aspect-ratio: 1/1;
 	border: 1px solid green;
 	padding: 0px;
+	min-width: 85%;
 }
 
 .map-bg {
@@ -35,6 +36,14 @@ body {
 }
 
 .dialogue {
+	padding: 0px;
+	margin-top: 50%;
+	margin-bottom: 50%;
+	overflow: scroll;
+
+	p {
+		text-align: center;
+	}
 }
 
 .options {
