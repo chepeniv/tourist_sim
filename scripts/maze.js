@@ -4,8 +4,11 @@
 // TASK
 // implement key hold down
 // implement map bounds
+// implement block bounds
 // implement exit blocks
 // implement padding on entry and exit blocks
+
+// const fs = require('fs');
 
 const mazeSize = 16;
 
@@ -53,28 +56,48 @@ function buildRow (size, y) {
   }
 }
 
+function padNum (size) {
+  const center = size / 2;
+  return Math.floor((Math.random() * center) + (center / 2));
+}
+
+function setEntry (size) {
+  const entry = padNum(size);
+  const row = `.${entry} .0`;
+  $(row).addClass('player-pos');
+}
+
+function setExits (size) {
+  const topExit = padNum(size);
+  const rightExit = padNum(size);
+  const bottomExit = padNum(size);
+
+  const topEdge = `.0 .${topExit}`;
+  const rightEdge = `.${rightExit} .${size - 1}`;
+  const bottomEdge = `.${size - 1} .${bottomExit}`;
+
+  $(topEdge).addClass('exit-top');
+  $(rightEdge).addClass('exit-right');
+  $(bottomEdge).addClass('exit-bottom');
+}
+
 function buildMazeGrid (size) {
   for (let i = 0; i < size; i++) {
     buildRow(size, i);
   }
-}
-
-function setEntry (size) {
-  const entry = Math.floor(Math.random() * size);
-  const row = `.${entry} .0`;
-  $(row).first().addClass('player_pos');
+  setEntry(size);
+  setExits(size);
 }
 
 $(function () {
   buildMazeGrid(mazeSize);
-  setEntry(mazeSize);
 
   $('html').bind('keyup', function (e) {
     if (e.keyCode < left || down < e.keyCode) {
       return;
     }
 
-    const oldPos = $('.player_pos');
+    const oldPos = $('.player-pos');
     const index = oldPos.index();
     const rowIndex = oldPos.parent().index();
 
@@ -84,19 +107,19 @@ $(function () {
     const boundBottom = oldPos.hasClass('bound-bottom');
 
     if (e.keyCode === right && !boundRight) {
-      oldPos.toggleClass('player_pos');
-      oldPos.next().toggleClass('player_pos');
+      oldPos.toggleClass('player-pos');
+      oldPos.next().toggleClass('player-pos');
     } else if (e.keyCode === left && !boundLeft) {
-      oldPos.toggleClass('player_pos');
-      oldPos.prev().toggleClass('player_pos');
+      oldPos.toggleClass('player-pos');
+      oldPos.prev().toggleClass('player-pos');
     } else if (e.keyCode === up && !boundTop) {
-      oldPos.toggleClass('player_pos');
+      oldPos.toggleClass('player-pos');
       const newPos = `.${rowIndex - 1} .${index}`;
-      $(newPos).toggleClass('player_pos');
+      $(newPos).toggleClass('player-pos');
     } else if (e.keyCode === down && !boundBottom) {
-      oldPos.toggleClass('player_pos');
+      oldPos.toggleClass('player-pos');
       const newPos = `.${rowIndex + 1} .${index}`;
-      $(newPos).toggleClass('player_pos');
+      $(newPos).toggleClass('player-pos');
     }
   });
 });

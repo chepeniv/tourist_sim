@@ -85,42 +85,56 @@ body {
 
 /******** edge boundaries ********/
 .bound-left {
-	box-shadow: 4px 0px 0px 0px yellow inset;
+	box-shadow: 6px 0px 0px 0px yellow inset;
 }
 
 .bound-top {
-	box-shadow: 0px 4px 0px 0px violet inset;
+	box-shadow: 0px 6px 0px 0px violet inset;
 }
 
 .bound-right {
-	box-shadow: -4px 0px 0px 0px tomato inset;
+	box-shadow: -6px 0px 0px 0px tomato inset;
 }
 
 .bound-bottom {
-	box-shadow: 0px -4px 0px 0px springgreen inset;
+	box-shadow: 0px -6px 0px 0px springgreen inset;
 }
 
 /******** corner boundaries ********/
 
 .bound-left.bound-top {
-	box-shadow: 4px 4px 0px 0px lightseagreen inset;
+	box-shadow: 6px 6px 0px 0px lightseagreen inset;
 }
 
 .bound-right.bound-top {
-	box-shadow: -4px 4px 0px 0px lightseagreen inset;
+	box-shadow: -6px 6px 0px 0px lightseagreen inset;
 }
 
 .bound-left.bound-bottom {
-	box-shadow: 4px -4px 0px 0px lightseagreen inset;
+	box-shadow: 6px -6px 0px 0px lightseagreen inset;
 }
 
 .bound-right.bound-bottom {
-	box-shadow: -4px -4px 0px 0px lightseagreen inset;
+	box-shadow: -6px -6px 0px 0px lightseagreen inset;
+}
+
+/******** map exits ********/
+
+.exit-top {
+	box-shadow: none;
+}
+
+.exit-right {
+	box-shadow: none;
+}
+
+.exit-bottom {
+	box-shadow: none;
 }
 
 /******** player block ********/
 
-.player_pos {
+.player-pos {
 	border: none;
-	background-color: orange;
+	box-shadow: 0px 0px 0px 6px lightsalmon inset;
 }
