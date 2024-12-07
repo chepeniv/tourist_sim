@@ -18,10 +18,11 @@ class Cell:
         find_index = lambda x, y: x + y * cols
         if x < 0 or x > cols-1 or y < 0 or y > rows-1:
             return False
-        return grid_cells[find_index(x, y)]
+        return grid_cells[x][y]
 
 def remove_walls(current, next):
-    dx, dy = current.x - next.x, current.y, next.y
+    dx = current.x - next.x
+    dy = current.y, next.y
     if dx == 1:
         current.walls['left'] = False
         next.walls['right'] = False
@@ -43,10 +44,11 @@ def generate_maze():
         current.visited = True
 
         neighbors = []
-        top = grid_cells[current.x][current.y-1] if current.y > 0 else None
-        left = grid_cells[current.x-1][current.y] if current.x > 0 else None
-        bottom = grid_cells[current.x][current.y+1] if current.y > size-1 else None
-        right = grid_cells[current.x+1][current.y] if current.x > size-1 else None
+        top = current.check_cell(current.x, current.y-1)
+        left = current.check_cell(current.x-1, current.y)
+        bottom = current.check_cell(current.x, current.y+1)
+        right = current.check_cell(current.x+1, current.y)
+
         if top and not top.visited:
             neighbors.append(top)
         if left and not left.visited:
@@ -55,7 +57,7 @@ def generate_maze():
             neighbors.append(bottom)
         if right and not right.visited:
             neighbors.append(right)
-        
+
         if neighbors:
             next_cell = choice(neighbors)
             remove_walls(current, next_cell)
@@ -67,6 +69,7 @@ def generate_maze():
 def maze_to_json(maze):
     def cell_to_number(cell):
         walls = cell.walls.copy()
+
         if walls['top'] and walls['bottom'] and walls['right']:
             return 3
         elif walls['top'] and walls['bottom'] and walls['left']:
