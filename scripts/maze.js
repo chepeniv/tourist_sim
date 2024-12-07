@@ -77,16 +77,24 @@ $(function () {
     const oldPos = $('.player_pos');
     const index = oldPos.index();
     const rowIndex = oldPos.parent().index();
-    oldPos.toggleClass('player_pos');
 
-    if (e.keyCode === right) {
+    const boundRight = oldPos.hasClass('bound-right');
+    const boundLeft = oldPos.hasClass('bound-left');
+    const boundTop = oldPos.hasClass('bound-top');
+    const boundBottom = oldPos.hasClass('bound-bottom');
+
+    if (e.keyCode === right && !boundRight) {
+      oldPos.toggleClass('player_pos');
       oldPos.next().toggleClass('player_pos');
-    } else if (e.keyCode === left) {
+    } else if (e.keyCode === left && !boundLeft) {
+      oldPos.toggleClass('player_pos');
       oldPos.prev().toggleClass('player_pos');
-    } else if (e.keyCode === up) {
+    } else if (e.keyCode === up && !boundTop) {
+      oldPos.toggleClass('player_pos');
       const newPos = `.${rowIndex - 1} .${index}`;
       $(newPos).toggleClass('player_pos');
-    } else {
+    } else if (e.keyCode === down && !boundBottom) {
+      oldPos.toggleClass('player_pos');
       const newPos = `.${rowIndex + 1} .${index}`;
       $(newPos).toggleClass('player_pos');
     }
