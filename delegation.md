@@ -4,6 +4,10 @@
 
 ### top priority
 
+- [ ] implement map edge detection - **chepe**
+- [ ] implement block types - **chepe**
+	- [ ] path, exit, enter, dead-end
+
 ### bottom priority
 
 ## queue
@@ -27,16 +31,13 @@
 
 ### maze
 
-- [ ] build grid
-- [ ] implement movement and feedback
-- [ ] implement map edge detection
-- [ ] make cross map
-- [ ] implement block types
-	- [ ] path, exit, enter, dead-end
-- [ ] make dead-end
 - [ ] standardize map file layout
+- [ ] make dead-end
+
 - [ ] make handcrafted map
-- [ ] implement handcrafted map
+	- [ ] make cross map
+	- [ ] implement handcrafted map
+
 - [ ] implement map transformation
 
 ### maze generator
@@ -56,3 +57,6 @@
 - [ ] Images
 
 ## completed
+
+- [x] build grid - **chepe**
+- [x] implement movement and feedback - **chepe**
