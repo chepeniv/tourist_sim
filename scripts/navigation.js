@@ -8,7 +8,10 @@ const right = 39;
 const down = 40;
 
 function reachedExit () {
-  console.log('reached exit!');
+  $('.dialogue').prepend('<p>exit reached!</p>');
+  setTimeout(function () {
+    $('.dialogue p').remove();
+  }, 250);
 }
 
 function moveRight (oldPos) {
