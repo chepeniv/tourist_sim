@@ -14,6 +14,7 @@
 	<script type="text/javascript" src="scripts/maze_grid.js"></script>
 	<script type="text/javascript" src="scripts/maze_draw.js"></script>
 	<script type="text/javascript" src="scripts/navigation.js"></script>
+	<script type="text/javascript" src="scripts/encounters.js"></script>
 </head>
 
 <body>
@@ -29,22 +30,32 @@
 		</table>
 	</div>
 
-	<div class="encounter">
-		<span class="character"></span>
-		<span class="dialogue">
-			<!-- jquery generated dialog -->
-			<ul class="options">
-			<!-- jquery generated options -->
-			</ul>
-		</span>
-	</div>
+	<span class="hud">
+		<div class="stats-box">
+			<h3>STATS</h3>
+			<h4>Health</h4>
+			<div class="stat"></div>
+			<h4>Cash</h4>
+			<div class="stat"></div>
+		</div>
 
-	<span class="stats-box">
-		<h3>stats</h3>
-		<h4>health</h4>
-		<div class="stat"></div>
-		<h4>cash</h4>
-		<div class="stat"></div>
+		<div class="inventory">
+			<h3>Inventory</h3>
+			<table class="inventory-box">
+			</table>
+		</div>
+
+		<div class="encounter">
+			<h3>Encounter</h3>
+			<span class="character"></span>
+			<span class="dialogue">
+				<!-- jquery generated dialog -->
+				<ul class="options">
+				<!-- jquery generated options -->
+				</ul>
+			</span>
+		</div>
+
 	</span>
 </div>
 </body>
