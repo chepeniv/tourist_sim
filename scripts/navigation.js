@@ -12,9 +12,9 @@ function encounterEngaged (position) {
 }
 
 function reachedExit () {
-  $('.dialogue').prepend('<p>exit reached!</p>');
+  $('.dialogue p').text('exit reached!');
   setTimeout(function () {
-    $('.dialogue p').remove();
+    $('.dialogue p').text('');
   }, 250);
 }
 
