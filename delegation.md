@@ -2,26 +2,31 @@
 
 ## in progress
 
-### top priority
+- [ ] add inventory - **chepe**
+	- [ ] html and css
 
-- [ ] implement map edge detection - **chepe**
-- [ ] implement block types - **chepe**
-	- [ ] path, exit, enter, dead-end
+- [ ] standardize map file layout
+	- [ ] reach consensus
+
+- [ ] write out encounters ideas
+	- [ ] title
+	- [ ] characters
+		- [ ] name, image
+	- [ ] dialogue
+	- [ ] responses
+		- [ ] positive, negative, neutral
+	- [ ] outcomes
+		- [ ] positive, negative, neutral
+
+### top priority
 
 ### bottom priority
 
 ## queue
 
-- [ ] write out outline for maze building algorithm
-- [ ] write out encounters ideas
-- [ ] Craft Maze
-- [ ] Craft Encounter
-- [ ] Stat Management
-- [ ] Build Webpage
-- [ ] CSS
-- [ ] Jquery
-- [ ] Sucess, Failure Popups
-- [ ] Slide show!
+- [ ] craft encounter logic
+- [ ] stat management logic
+
 - [ ] build, standardize, and organize asset library
 	- [ ] handcrafted mazes
 	- [ ] backgrounds
@@ -29,16 +34,7 @@
 	- [ ] obstacles
 	- [ ] city layouts
 
-### maze
-
-- [ ] standardize map file layout
-- [ ] make dead-end
-
-- [ ] make handcrafted map
-	- [ ] make cross map
-	- [ ] implement handcrafted map
-
-- [ ] implement map transformation
+- [ ] slide show!
 
 ### maze generator
 
@@ -49,14 +45,17 @@
 
 ## extra
 
-- [ ] Random Generator
-- [ ] Dialogue
-- [ ] Outcomes
-- [ ] More stats like being positioned and such
-- [ ] Characters
-- [ ] Images
+- [ ] implement map transformation
+- [ ] random generator
+- [ ] more stats like being positioned and such
+- [ ] create data structures and algorithms for prime number encoding
 
 ## completed
 
 - [x] build grid - **chepe**
 - [x] implement movement and feedback - **chepe**
+- [x] make handcrafted map - **chepe**
+	- [x] implement handcrafted map
+- [x] implement map edge detection - **chepe**
+- [x] implement block types - **chepe**
+	- [x] path, exit, enter, dead-end
