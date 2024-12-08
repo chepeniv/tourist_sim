@@ -7,6 +7,10 @@ const up = 38;
 const right = 39;
 const down = 40;
 
+function encounterEngaged (position) {
+  return position.hasClass('encounter');
+}
+
 function reachedExit () {
   $('.dialogue').prepend('<p>exit reached!</p>');
   setTimeout(function () {
@@ -77,12 +81,17 @@ function moveDown (oldPos) {
 }
 
 $(function () {
-  $('html').keydown(function (e) {
-    if (e.keyCode < left || down < e.keyCode) {
+  $('html').on('keydown', function (e) {
+    const oldPos = $('.player-pos');
+
+    if (
+      e.keyCode < left ||
+      down < e.keyCode ||
+      encounterEngaged(oldPos)
+    ) {
       return;
     }
 
-    const oldPos = $('.player-pos');
     if (e.keyCode === right) {
       moveRight(oldPos);
     } else if (e.keyCode === left) {
