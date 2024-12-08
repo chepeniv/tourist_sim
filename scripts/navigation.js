@@ -15,9 +15,13 @@ function reachedExit () {
 }
 
 function moveRight (oldPos) {
-  const boundRight = oldPos.hasClass('bound-right');
-  const isExit = oldPos.hasClass('exit-right');
   const next = oldPos.next();
+  const isExit = oldPos.hasClass('exit-right');
+  const boundRight = (
+    oldPos.hasClass('right-wall') ||
+    next.hasClass('left-wall')
+  );
+
   if (!boundRight) {
     oldPos.toggleClass('player-pos');
     next.toggleClass('player-pos');
@@ -26,8 +30,12 @@ function moveRight (oldPos) {
 }
 
 function moveLeft (oldPos) {
-  const boundLeft = oldPos.hasClass('bound-left');
   const prev = oldPos.prev();
+  const boundLeft = (
+    oldPos.hasClass('left-wall') ||
+    prev.hasClass('right-wall')
+  );
+
   if (!boundLeft) {
     oldPos.toggleClass('player-pos');
     prev.toggleClass('player-pos');
@@ -37,11 +45,16 @@ function moveLeft (oldPos) {
 function moveUp (oldPos) {
   const index = oldPos.index();
   const rowIndex = oldPos.parent().index();
-  const boundTop = oldPos.hasClass('bound-top');
-  const newPos = `.${rowIndex - 1} .${index}`;
+  const newPos = $(`.${rowIndex - 1} .${index}`);
+
+  const boundTop = (
+    oldPos.hasClass('top-wall') ||
+    newPos.hasClass('bottom-wall')
+  );
+
   if (!boundTop) {
     oldPos.toggleClass('player-pos');
-    $(newPos).toggleClass('player-pos');
+    newPos.toggleClass('player-pos');
   }
   if (oldPos.hasClass('exit-top')) { reachedExit(); }
 }
@@ -49,11 +62,16 @@ function moveUp (oldPos) {
 function moveDown (oldPos) {
   const index = oldPos.index();
   const rowIndex = oldPos.parent().index();
-  const boundBottom = oldPos.hasClass('bound-bottom');
-  const newPos = `.${rowIndex + 1} .${index}`;
+  const newPos = $(`.${rowIndex + 1} .${index}`);
+
+  const boundBottom = (
+    oldPos.hasClass('bottom-wall') ||
+    newPos.hasClass('top-wall')
+  );
+
   if (!boundBottom) {
     oldPos.toggleClass('player-pos');
-    $(newPos).toggleClass('player-pos');
+    newPos.toggleClass('player-pos');
   }
   if (oldPos.hasClass('exit-bottom')) { reachedExit(); }
 }

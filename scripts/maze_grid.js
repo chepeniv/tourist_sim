@@ -19,16 +19,16 @@ function buildRow (size, y) {
     lastRow.append(`<td class="block ${x}"></td>`);
     const lastBlock = lastRow.children().last();
     if (y === 0) {
-      lastBlock.addClass('bound-top');
+      lastBlock.addClass('top-wall');
     }
     if (y === size - 1) {
-      lastBlock.addClass('bound-bottom');
+      lastBlock.addClass('bottom-wall');
     }
     if (x === 0) {
-      lastBlock.addClass('bound-left');
+      lastBlock.addClass('left-wall');
     }
     if (x === size - 1) {
-      lastBlock.addClass('bound-right');
+      lastBlock.addClass('right-wall');
     }
   }
 }
