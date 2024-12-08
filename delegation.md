@@ -2,11 +2,16 @@
 
 ## in progress
 
-- [~] add inventory - **chepe**
-	- [x] html and css
-	- [ ] layout grid
 - [ ] craft encounter logic
+	- [ ] populate map with encounters
+	- [ ] trigger encounter upon arrival
+		- [ ] prevent further movement
+		- [ ] update encounter box
+
 - [ ] create stats mgmt logic
+	- [ ] add dummy button to dummy encounter
+	- [ ] increment/decrement health and cash
+		- [ ] add color feedback
 
 - [ ] standardize map file layout
 	- [ ] reach consensus
@@ -59,3 +64,6 @@
 - [x] implement map edge detection - **chepe**
 - [x] implement block types - **chepe**
 	- [x] path, exit, enter, dead-end
+- [x] add inventory - **chepe**
+	- [x] html and css
+	- [x] layout grid
