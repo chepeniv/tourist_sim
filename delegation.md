@@ -2,31 +2,34 @@
 
 ## in progress
 
-- [ ] craft encounter logic
-	- [ ] populate map with encounters
-	- [ ] trigger encounter upon arrival
-		- [ ] prevent further movement
-		- [ ] update encounter box
+- [ ] standardize map file layout
+	- [ ] reach consensus
 
+### Malik :
+- [ ] handwrite .csv data
+- [ ] create .py that jsonifies it to data/encounters.json
+- [ ] create scripts/encounter_loader.js that take json file
+
+- [ ] write out encounters ideas
+	- [ ] title / id num
+	- [ ] character
+		- [ ] name, image url
+	- [ ] dialogue text
+	- [ ] response text
+		- [ ] positive, negative, neutral
+	- [ ] outcome codes
+		- [ ] positive, negative, neutral
+
+### chepe
 - [ ] create stats mgmt logic
 	- [ ] add dummy button to dummy encounter
 	- [ ] increment/decrement health and cash
 		- [ ] add color feedback
 
-- [ ] standardize map file layout
-	- [ ] reach consensus
-
-- [ ] write out encounters ideas
-	- [ ] title
-	- [ ] characters
-		- [ ] name, image
-	- [ ] dialogue
-	- [ ] responses
-		- [ ] positive, negative, neutral
-	- [ ] outcomes
-		- [ ] positive, negative, neutral
-
 ### top priority
+
+- [ ] slide show
+- [ ] readme
 
 ### bottom priority
 
@@ -39,7 +42,6 @@
 	- [ ] obstacles
 	- [ ] city layouts
 
-- [ ] slide show!
 
 ### maze generator
 
@@ -67,3 +69,8 @@
 - [x] add inventory - **chepe**
 	- [x] html and css
 	- [x] layout grid
+- [x] craft encounter logic - **chepe**
+	- [x] populate map with encounters
+	- [x] trigger encounter upon arrival
+		- [x] prevent further movement
+		- [x] update encounter box
