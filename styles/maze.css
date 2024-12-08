@@ -8,88 +8,49 @@
 	width: 100%;
 }
 
-/******** maze drawing ********/
-
 .block {
 	aspect-ratio: 1/1;
-	border: 1px solid pink;
 }
 
-/******** edge boundaries ********/
-.bound-left {
-	box-shadow: 6px 0px 0px 0px yellow inset;
-}
-
-.bound-top {
-	box-shadow: 0px 6px 0px 0px violet inset;
-}
-
-.bound-right {
-	box-shadow: -6px 0px 0px 0px tomato inset;
-}
-
-.bound-bottom {
-	box-shadow: 0px -6px 0px 0px springgreen inset;
-}
-
-/******** corner boundaries ********/
-
-.bound-left.bound-top {
-	box-shadow: 6px 6px 0px 0px lightseagreen inset;
-}
-
-.bound-right.bound-top {
-	box-shadow: -6px 6px 0px 0px lightseagreen inset;
-}
-
-.bound-left.bound-bottom {
-	box-shadow: 6px -6px 0px 0px lightseagreen inset;
-}
-
-.bound-right.bound-bottom {
-	box-shadow: -6px -6px 0px 0px lightseagreen inset;
-}
-
-/******** map exits ********/
-
-.exit-top {
-	box-shadow: none;
-}
-
-.exit-right {
-	box-shadow: none;
-}
-
-.exit-bottom {
-	box-shadow: none;
-}
-
-/******** walls drawing ********/
+/******** walls ********/
 
 .no-wall {
-	/* box-shadow: none; */
 }
 
 .bottom-wall {
-	box-shadow: 0px -6px 0px 0px black inset;
+	border-bottom: 4px solid black;
 }
 
 .top-wall {
-	box-shadow: 0px 6px 0px 0px black inset;
+	border-top: 4px solid black;
 }
 
 .right-wall {
-	box-shadow: -6px 0px 0px 0px black inset;
+	border-right: 4px solid black;
 }
 
 .left-wall {
-	box-shadow: 6px 0px 0px 0px black inset;
+	border-left: 4px solid black;
 }
 
-/******** player block ********/
+/******** exits ********/
+
+.exit-top {
+	border-top: none;
+}
+
+.exit-right {
+	border-right: none;
+}
+
+.exit-bottom {
+	border-bottom: none;
+}
+
+/******** player ********/
 
 .player-pos {
-	border: none;
+	/* border: none; */
 	background-color: lightsalmon;
-	box-shadow: 0px 0px 0px 6px lightsalmon inset;
+	/* box-shadow: 0px 0px 0px 6px lightsalmon inset; */
 }
