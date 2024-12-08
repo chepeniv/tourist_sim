@@ -50,14 +50,10 @@ function drawMaze (layout) {
       const row = y;
       const column = (x * 2) + shift;
 
-      const coordinates = `.${row} .${column}`;
-
       const code = layout[y][x];
       const walls = wallEncodings[code];
 
-      // console.log(y, x, code);
-      // console.log(coordinates);
-      // console.log(walls);
+      const coordinates = `.${row} .${column}`;
       $(coordinates).addClass(walls);
     }
   }
