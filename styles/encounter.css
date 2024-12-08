@@ -1,17 +1,69 @@
+.encounter {
+	box-shadow: 0px 0px 0px 8px yellow inset;
+}
+
+.character {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: nowrap;
+	width: 100%;
+	height: 15%;
+
+	div {
+		height: 100%;
+		width: 30%;
+
+		button {
+			width: 100%;
+			height: 40%;
+		}
+	}
+}
+
 .dialogue {
-	padding: 0%;
-	margin-top: 50%;
-	margin-bottom: 50%;
+	/* padding: 0%; */
+	/* margin-top: 50%; */
+	/* margin-bottom: 50%; */
 	overflow: scroll;
+
+	h4 {
+	}
 
 	p {
 		text-align: center;
+		height: 70%;
 	}
 }
 
 .options {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: nowrap;
+	width: 100%;
+	height: 15%;
+
+	div {
+		height: 100%;
+		width: 30%;
+
+		button {
+			width: 100%;
+			height: 40%;
+		}
+	}
 }
 
-.encounter {
-	box-shadow: 0px 0px 0px 8px yellow inset;
+#ignore {
+}
+
+#engage {
+}
+
+#polite {
+}
+
+#mellow {
+}
+
+#rude {
 }

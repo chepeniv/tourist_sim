@@ -18,7 +18,7 @@ function effectStats (num) {
 
 function respond () {
   const pos = $('.player-pos');
-  pos.removeClass('encounter engaged');
+  pos.removeClass('encounter active');
   $('.options').hide();
 }
 
@@ -39,9 +39,9 @@ function respondNegatively () {
 
 function initEncounter () {
   const pos = $('.player-pos');
-  if (pos.hasClass('encounter') && !pos.hasClass('engaged')) {
-    pos.addClass('engaged');
-    $('.options').show();
+  if (pos.hasClass('encounter') && !pos.hasClass('active')) {
+    pos.addClass('active');
+    $('.character').show();
   }
 }
 
@@ -49,9 +49,20 @@ $(function () {
   createEncounters(8);
 
   $('.options').hide();
+  $('.character').hide();
 
   $('html').on('keydown', function (e) {
     initEncounter();
+  });
+
+  $('#engage').on('click', function () {
+    $('.character').hide();
+    $('.options').show();
+  });
+
+  $('#ignore').on('click', function () {
+    $('.character').hide();
+    respond();
   });
 
   $('#polite').on('click', function () {
