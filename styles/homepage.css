@@ -20,6 +20,9 @@ body {
 	min-width: 85%;
 }
 
+.map-bg {
+}
+
 .hud {
 	display: flex;
 	flex-direction: column;
@@ -53,28 +56,4 @@ body {
 	border: 1px solid blue;
 	text-align: center;
 	height: 40%;
-}
-
-.map-bg {
-}
-
-.stat {
-	height: 15%;
-	background-color: #ff0000;
-	margin: 1px;
-	padding: 0px;
-}
-
-.dialogue {
-	padding: 0%;
-	margin-top: 50%;
-	margin-bottom: 50%;
-	overflow: scroll;
-
-	p {
-		text-align: center;
-	}
-}
-
-.options {
 }

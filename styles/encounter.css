@@ -1,0 +1,13 @@
+.dialogue {
+	padding: 0%;
+	margin-top: 50%;
+	margin-bottom: 50%;
+	overflow: scroll;
+
+	p {
+		text-align: center;
+	}
+}
+
+.options {
+}

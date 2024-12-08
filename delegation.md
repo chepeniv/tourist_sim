@@ -2,8 +2,11 @@
 
 ## in progress
 
-- [ ] add inventory - **chepe**
-	- [ ] html and css
+- [~] add inventory - **chepe**
+	- [x] html and css
+	- [ ] layout grid
+- [ ] craft encounter logic
+- [ ] create stats mgmt logic
 
 - [ ] standardize map file layout
 	- [ ] reach consensus
@@ -23,9 +26,6 @@
 ### bottom priority
 
 ## queue
-
-- [ ] craft encounter logic
-- [ ] stat management logic
 
 - [ ] build, standardize, and organize asset library
 	- [ ] handcrafted mazes
