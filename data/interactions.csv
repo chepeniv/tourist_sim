@@ -1,0 +1,7 @@
+id,type,description,outcome_positive,outcome_negative,reward_type,reward_amount,penalty_type,penalty_amount
+1,thief,A shady thief lurks here. Be careful, or you might lose what little you have!,"Thief tricks you and steals belongings.","You walk away unharmed.",money,0,money,-20
+2,cop,A police officer stands nearby, observing everything.,"Cop gives helpful advice.","Cop fines you for bribery.",health,10,money,-10
+3,old-man,An old man sits here, looking friendly.,"Old man shares a valuable tip.","You miss out on some helpful advice.",money,10,none,0
+4,woman,A local woman is standing here, looking curious.,"You buy a first aid kit.","You walk away with no changes.",money,-15,item,"first aid kit"
+5,trash,A pile of trash is here. Maybe you should check it out.,"You find some money.","You injure yourself.",money,10,health,-15
+6,store,A store is here. Maybe you can buy something useful.,"You regain health by buying items.","You walk away with no changes.",health,20,money,-10
