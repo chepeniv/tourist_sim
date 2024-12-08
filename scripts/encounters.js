@@ -200,6 +200,7 @@ export { addInteractiveElements };
 
 //   display character : ignore / engage
 //   if engage : polite, mellow, rude,
+//   implement key-press option selection
 
 function createEncounters (size) {
   for (let i = 0; i < size; i++) {
