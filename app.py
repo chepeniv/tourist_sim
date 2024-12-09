@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+import json
 
 app = Flask(__name__)
 
@@ -10,13 +11,13 @@ def home():
 # Route to fetch interaction by ID
 @app.route('/interaction/<int:id>', methods=['GET'])
 def get_interaction(id):
-    # Example interactions (you can load this from a JSON or database later)
-    interactions = [
-        {"id": 1, "type": "thief", "description": "A shady thief lurks here. Be careful"},
-        {"id": 2, "type": "cop", "description": "A police officer stands nearby"},
-        {"id": 3, "type": "old-man", "description": "An old man sits here"},
-    ]
-    
+    # Load interactions from the encounters.json file
+    try:
+        with open('data/encounters.json', 'r') as file:
+            interactions = json.load(file)
+    except FileNotFoundError:
+        return jsonify({"error": "encounters.json file not found"}), 500
+
     # Find the interaction by id
     interaction = next((item for item in interactions if item["id"] == id), None)
     

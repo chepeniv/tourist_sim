@@ -127,86 +127,77 @@ function clearEncounter() {
   $('.options').hide(); // Hide options menu
 }
 
-function respondPositively() {
+function respond(actionEffect) {
   startInteraction(); // Disable movement during response
   clearEncounter(); // Clear encounter state
   setTimeout(function () {
-    effectStats(1); // Apply positive effects
+    effectStats(actionEffect); // Apply effect based on action
     endInteraction(); // Re-enable movement
   }, 1000); // Simulate a delay before re-enabling movement
+}
+
+function respondPositively() {
+  respond(1); // Apply positive effects
 }
 
 function respondNeutrally() {
-  startInteraction(); // Disable movement during response
-  clearEncounter(); // Clear encounter state
-  setTimeout(function () {
-    effectStats(0); // Apply neutral effects
-    endInteraction(); // Re-enable movement
-  }, 1000); // Simulate a delay before re-enabling movement
+  respond(0); // Apply neutral effects
 }
 
 function respondNegatively() {
-  startInteraction(); // Disable movement during response
-  clearEncounter(); // Clear encounter state
-  setTimeout(function () {
-    effectStats(-1); // Apply negative effects
-    endInteraction(); // Re-enable movement
-  }, 1000); // Simulate a delay before re-enabling movement
+  respond(-1); // Apply negative effects
 }
 
 function ignoreEncounter() {
-  const pos = $('.player-pos');
-  console.log("Ignoring encounter");  // Debugging log
-  pos.removeClass('encounter engaged');  // Remove encounter and engaged classes
-  $('.options').hide();  // Hide the options
+  console.log("Ignoring encounter...");
+  clearEncounter(); // Clear encounter state
   setTimeout(function () {
-    endInteraction();  // Allow movement again after 1 second
-  }, 1000);  // Allow the player to move after 1 second
+    endInteraction(); // Re-enable movement after delay
+  }, 1000);
 }
 
 function initEncounter() {
   const pos = $('.player-pos');
   if (pos.hasClass('encounter') && !pos.hasClass('engaged')) {
+    console.log("Encounter initiated"); // Debugging log
     pos.addClass('engaged');
-    $('.options').show();  // Show the options when encounter is triggered
+    $('.options').show(); // Display options
+    startInteraction(); // Block movement during interaction
   }
 }
 
 $(function () {
-  createEncounters(8);  // Creates random encounters on the grid
+  createEncounters(8); // Place random encounters
 
-  $('.options').hide();  // Hide options initially
+  $('.options').hide(); // Initially hide options
 
   $('html').on('keydown', function (e) {
     const oldPos = $('.player-pos');
 
-    // Don't process any key press if encounter is engaged
-    if (oldPos.hasClass('engaged')) {
+    // Skip movement if interacting or engaged in encounter
+    if (isInteracting || oldPos.hasClass('engaged')) {
       return;
     }
 
-    // Check for encounter and initiate interaction
+    // Check for encounters
     initEncounter();
-
-    // Add movement logic here...
-    // For example, moving the player position
   });
 
   // Event listeners for buttons in the options menu
   $('#polite').on('click', function () {
-    respondPositively();
+    respondPositively(); // Apply positive response
   });
 
   $('#mellow').on('click', function () {
-    respondNeutrally();
+    respondNeutrally(); // Apply neutral response
   });
 
   $('#rude').on('click', function () {
-    respondNegatively();
+    respondNegatively(); // Apply negative response
   });
 
   // Add an event for the "ignore" button
   $('#ignore').on('click', function () {
-    ignoreEncounter();  // Call ignore encounter function when clicked
+    ignoreEncounter(); // Call ignore encounter function
   });
 });
