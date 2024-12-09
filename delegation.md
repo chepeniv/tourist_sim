@@ -27,7 +27,8 @@
 
 ### chepe
 
-- [ ] inventory mgmt logic
+- [ ] add inventory interaction
+- [ ] add inventory-encounter interaction
 
 ### bottom priority
 
@@ -76,3 +77,4 @@
 	- [x] add dummy button to dummy encounter
 	- [x] increment/decrement health and cash
 		- [x] add color feedback
+- [x] core inventory mgmt logic **chepe**

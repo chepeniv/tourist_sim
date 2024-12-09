@@ -10,6 +10,7 @@
 
 .block {
 	aspect-ratio: 1/1;
+	box-shadow: 0px 0px 0px 16px white inset;
 }
 
 /******** walls ********/
@@ -47,9 +48,14 @@
 	border-bottom: none;
 }
 
-/******** characters ********/
+/******** interactive ********/
 
-/* add item block */
+.item-block {
+	background-color: lightskyblue;
+	background-clip: content-box;
+	box-sizing: border-box;
+	/* padding: 4px; */
+}
 
 .encounter {
 	box-shadow: 0px 0px 0px 8px yellow inset;
