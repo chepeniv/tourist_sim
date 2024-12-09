@@ -9,13 +9,16 @@
 	p {
 		border: 1px solid darkgrey;
 		margin: 0%;
+		margin-bottom: 15px;
 		text-align: center;
 		height: 75%;
+		width: 100%;
 	}
 
 	img {
 		height: 75%;
 		width: 100%;
+		margin-bottom: 15px;
 	}
 
 	span {
@@ -51,7 +54,7 @@
 	}
 }
 
-#ignore {
+#dismiss {
 }
 
 #engage {

@@ -1,9 +1,9 @@
 #!/usr/bin/node
 /* global $ */
 
-//   display character : ignore / engage
-//   if engage : polite, mellow, rude,
 //   implement key-press option selection
+//   display dialogue text
+//   add consequences
 
 function createEncounters (size) {
   for (let i = 0; i < size; i++) {
@@ -17,27 +17,24 @@ function effectStats (num) {
   // modify health and cash bars
 }
 
-function respond () {
-  const pos = $('.player-pos');
-  pos.removeClass('encounter active');
+function endEncounter () {
+  $('.player-pos').removeClass('encounter active');
+  $('.encounter-box p').hide();
   $('.response').hide();
-  $('.encounter-box img').hide();
-  $('.encounter-box p').clear();
-  $('.encounter-box p').show();
 }
 
 function respondPositively () {
-  respond();
+  endEncounter();
   effectStats(1);
 }
 
 function respondNeutrally () {
-  respond();
+  endEncounter();
   effectStats(0);
 }
 
 function respondNegatively () {
-  respond();
+  endEncounter();
   effectStats(-1);
 }
 
@@ -45,16 +42,35 @@ function initEncounter () {
   const pos = $('.player-pos');
   if (pos.hasClass('encounter') && !pos.hasClass('active')) {
     pos.addClass('active');
-    $('.character').show();
     $('.encounter-box img').show();
-    $('.encounter-box p').hide();
+    $('.character').show();
   }
+}
+
+function dismissEncounter () {
+  $('.player-pos').removeClass('encounter active');
+  $('.encounter-box img').hide();
+  $('.character').hide();
+}
+
+function engageEncounter () {
+  // $.get(encounterRequest, function (data) {
+  //   $('.encounter-box p').clear();
+  //   $('.encounter-box p').text(data);
+  // });
+
+  $('.encounter-box img').hide();
+  $('.character').hide();
+
+  $('.encounter-box p').show();
+  $('.response').show();
 }
 
 $(function () {
   createEncounters(8);
 
   $('.encounter-box img').hide();
+  $('.encounter-box p').hide();
   $('.response').hide();
   $('.character').hide();
 
@@ -63,15 +79,11 @@ $(function () {
   });
 
   $('#engage').on('click', function () {
-    $('.encounter-box img').hide();
-    $('.encounter-box p').show();
-    $('.character').hide();
-    $('.response').show();
+    engageEncounter();
   });
 
-  $('#ignore').on('click', function () {
-    $('.character').hide();
-    respond();
+  $('#dismiss').on('click', function () {
+    dismissEncounter();
   });
 
   $('#polite').on('click', function () {
