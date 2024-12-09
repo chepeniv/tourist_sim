@@ -3,4 +3,4 @@
 # usage :
 # sh start_frontend.sh
 
-clear; python3 -m frontend.frontend
+clear; python3 -m frontend
