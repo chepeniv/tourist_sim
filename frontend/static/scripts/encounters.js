@@ -2,7 +2,6 @@
 /* global $ */
 
 //   implement key-press option selection
-//   display dialogue text
 //   add consequences
 
 function createEncounters (size) {
@@ -54,10 +53,11 @@ function dismissEncounter () {
 }
 
 function engageEncounter () {
-  // $.get(encounterRequest, function (data) {
-  //   $('.encounter-box p').clear();
-  //   $('.encounter-box p').text(data);
-  // });
+  const rand = Math.floor(Math.random() * 4);
+  const rantText = `static/assets/dialogue/enc_dialog-${rand}.txt`;
+  $.get(rantText, function (data) {
+    $('.encounter-box p').text(data);
+  }, 'text');
 
   $('.encounter-box img').hide();
   $('.character').hide();
