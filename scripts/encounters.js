@@ -21,6 +21,9 @@ function respond () {
   const pos = $('.player-pos');
   pos.removeClass('encounter active');
   $('.response').hide();
+  $('.encounter-box img').hide();
+  $('.encounter-box p').clear();
+  $('.encounter-box p').show();
 }
 
 function respondPositively () {
@@ -43,6 +46,8 @@ function initEncounter () {
   if (pos.hasClass('encounter') && !pos.hasClass('active')) {
     pos.addClass('active');
     $('.character').show();
+    $('.encounter-box img').show();
+    $('.encounter-box p').hide();
   }
 }
 
@@ -58,6 +63,8 @@ $(function () {
   });
 
   $('#engage').on('click', function () {
+    $('.encounter-box img').hide();
+    $('.encounter-box p').show();
     $('.character').hide();
     $('.response').show();
   });
