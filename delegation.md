@@ -2,6 +2,10 @@
 
 ## in progress
 
+### top priority
+
+- [ ] readme
+- [ ] slide show
 - [ ] standardize map file layout
 	- [ ] reach consensus
 
@@ -28,10 +32,9 @@
 	- [ ] increment/decrement health and cash
 		- [ ] add color feedback
 
-### top priority
+- [ ] encounter mugshot logic
 
-- [ ] slide show
-- [ ] readme
+- [ ] inventory mgmt logic
 
 ### bottom priority
 
