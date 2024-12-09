@@ -3,15 +3,78 @@
 
 //   implement key-press option selection
 
+// stat codes
+const health = 0;
+const cash = 1;
+
+// init values
+const initHealth = 50;
+const initCash = 5;
+
+// stat storage
 const stats = {
-  name: ['health', 'cash'],
-  values: [20, 5],
-  colors: [20, 5]
+  names: ['health', 'cash'],
+  values: [initHealth, initCash],
+  colors: [getColor(initHealth), getColor(initCash)]
 };
 
-function initStats () {
-  $('.health').css({ width: `${stats.values[0]}%` });
-  $('.cash').css({ width: `${stats.values[1]}%` });
+function getColor (num) {
+  const red = Math.floor(255 * (100 - num) / 100);
+  const green = Math.floor(255 * num / 100);
+  const blue = Math.floor(255 * num / 100 / 2);
+  return `rgb(${red}, ${green}, ${blue})`;
+}
+
+function setStat (statCode, value) {
+  const name = `.${stats.names[statCode]}`;
+  const color = getColor(value);
+
+  stats.values[statCode] = value;
+  stats.colors[statCode] = color;
+
+  $(name).css({
+    width: `${value}%`,
+    'background-color': `${color}`
+  });
+}
+
+function handleStatChange (statCode, change) {
+  const newVal = stats.values[statCode] + change;
+  if (newVal < 0) {
+    setStat(statCode, 0);
+  } else if (newVal > 100) {
+    setStat(statCode, 100);
+  } else {
+    setStat(statCode, newVal);
+  }
+}
+
+function randStatChange (direction) {
+  const change = Math.floor(Math.random() * 15);
+  const select = Math.ceil(Math.random() * 2) % 2;
+
+  if (direction > 0) {
+    handleStatChange(select, change);
+  } else if (direction < 0) {
+    handleStatChange(select, -change);
+  } else {
+    console.log('no change');
+  }
+}
+
+function respondPositively () {
+  randStatChange(1);
+  endEncounter();
+}
+
+function respondNeutrally () {
+  randStatChange(0);
+  endEncounter();
+}
+
+function respondNegatively () {
+  randStatChange(-1);
+  endEncounter();
 }
 
 // populate the map with encounters randomly
@@ -23,44 +86,6 @@ function createEncounters (size) {
   }
 }
 
-// this is primarily to check that the stats work
-function effectStats (num) {
-  const change = Math.floor(Math.random() * 15);
-  const select = Math.floor(Math.random() * 2) % 2;
-  const oldVal = stats.values[select];
-  if (num > 0) {
-    stats.values[select] = oldVal + change;
-    $(`.${stats.name[select]}`).css({ width: `${stats.values[select]}%` });
-  } else if (num < 0) {
-    stats.values[select] = oldVal - change;
-    $(`.${stats.name[select]}`).css({ width: `${stats.values[select]}%` });
-  } else {
-    console.log('no change');
-  }
-}
-
-function endEncounter () {
-  $('.player-pos').removeClass('encounter active');
-  $('.encounter-box h3').text('Encounters');
-  $('.encounter-box p').hide();
-  $('.response').hide();
-}
-
-function respondPositively () {
-  endEncounter();
-  effectStats(1);
-}
-
-function respondNeutrally () {
-  endEncounter();
-  effectStats(0);
-}
-
-function respondNegatively () {
-  endEncounter();
-  effectStats(-1);
-}
-
 function initEncounter () {
   const pos = $('.player-pos');
   if (pos.hasClass('encounter') && !pos.hasClass('active')) {
@@ -69,13 +94,6 @@ function initEncounter () {
     $('.encounter-box img').show();
     $('.character').show();
   }
-}
-
-function dismissEncounter () {
-  $('.player-pos').removeClass('encounter active');
-  $('.encounter-box h3').text('Encounters');
-  $('.encounter-box img').hide();
-  $('.character').hide();
 }
 
 function engageEncounter () {
@@ -92,9 +110,19 @@ function engageEncounter () {
   $('.response').show();
 }
 
+function endEncounter () {
+  $('.player-pos').removeClass('encounter active');
+  $('.encounter-box h3').text('Encounters');
+  $('.encounter-box img').hide();
+  $('.encounter-box p').hide();
+  $('.character').hide();
+  $('.response').hide();
+}
+
 $(function () {
   createEncounters(8);
-  initStats();
+  setStat(health, initHealth);
+  setStat(cash, initCash);
 
   $('.encounter-box img').hide();
   $('.encounter-box p').hide();
@@ -110,7 +138,7 @@ $(function () {
   });
 
   $('#dismiss').on('click', function () {
-    dismissEncounter();
+    endEncounter();
   });
 
   $('#polite').on('click', function () {

@@ -27,11 +27,6 @@
 
 ### chepe
 
-- [ ] create stats mgmt logic
-	- [x] add dummy button to dummy encounter
-	- [ ] increment/decrement health and cash
-		- [ ] add color feedback
-
 - [ ] inventory mgmt logic
 
 ### bottom priority
@@ -77,3 +72,7 @@
 		- [x] prevent further movement
 		- [x] update encounter box
 - [x] encounter mugshot logic - **chepe**
+- [x] create stats mgmt logic - **chepe**
+	- [x] add dummy button to dummy encounter
+	- [x] increment/decrement health and cash
+		- [x] add color feedback
