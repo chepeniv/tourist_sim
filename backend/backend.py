@@ -8,7 +8,7 @@ app.register_blueprint(app_views)
 cors_setup = CORS(
     app,
     send_wildcard=True,
-    resources={r"/api/v1/*": {"origins": "*"}})
+    resources={r"/data/*": {"origins": "*"}})
 
 @app.errorhandler(404)
 def not_found(e):
