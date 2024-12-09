@@ -2,8 +2,19 @@
 /* global $ */
 
 //   implement key-press option selection
-//   add consequences
 
+const stats = {
+  name: ['health', 'cash'],
+  values: [20, 5],
+  colors: [20, 5]
+};
+
+function initStats () {
+  $('.health').css({ width: `${stats.values[0]}%` });
+  $('.cash').css({ width: `${stats.values[1]}%` });
+}
+
+// populate the map with encounters randomly
 function createEncounters (size) {
   for (let i = 0; i < size; i++) {
     const randX = Math.floor(Math.random() * size);
@@ -12,12 +23,25 @@ function createEncounters (size) {
   }
 }
 
+// this is primarily to check that the stats work
 function effectStats (num) {
-  // modify health and cash bars
+  const change = Math.floor(Math.random() * 15);
+  const select = Math.floor(Math.random() * 2) % 2;
+  const oldVal = stats.values[select];
+  if (num > 0) {
+    stats.values[select] = oldVal + change;
+    $(`.${stats.name[select]}`).css({ width: `${stats.values[select]}%` });
+  } else if (num < 0) {
+    stats.values[select] = oldVal - change;
+    $(`.${stats.name[select]}`).css({ width: `${stats.values[select]}%` });
+  } else {
+    console.log('no change');
+  }
 }
 
 function endEncounter () {
   $('.player-pos').removeClass('encounter active');
+  $('.encounter-box h3').text('Encounters');
   $('.encounter-box p').hide();
   $('.response').hide();
 }
@@ -41,6 +65,7 @@ function initEncounter () {
   const pos = $('.player-pos');
   if (pos.hasClass('encounter') && !pos.hasClass('active')) {
     pos.addClass('active');
+    $('.encounter-box h3').text('Name');
     $('.encounter-box img').show();
     $('.character').show();
   }
@@ -48,6 +73,7 @@ function initEncounter () {
 
 function dismissEncounter () {
   $('.player-pos').removeClass('encounter active');
+  $('.encounter-box h3').text('Encounters');
   $('.encounter-box img').hide();
   $('.character').hide();
 }
@@ -68,6 +94,7 @@ function engageEncounter () {
 
 $(function () {
   createEncounters(8);
+  initStats();
 
   $('.encounter-box img').hide();
   $('.encounter-box p').hide();
