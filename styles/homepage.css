@@ -60,7 +60,11 @@ body {
 	}
 }
 
-.encounters-box {
+.encounter-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+
 	border: 1px solid blue;
 	text-align: center;
 	height: 43%;

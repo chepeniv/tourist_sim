@@ -20,7 +20,7 @@ function effectStats (num) {
 function respond () {
   const pos = $('.player-pos');
   pos.removeClass('encounter active');
-  $('.options').hide();
+  $('.response').hide();
 }
 
 function respondPositively () {
@@ -49,7 +49,8 @@ function initEncounter () {
 $(function () {
   createEncounters(8);
 
-  $('.options').hide();
+  $('.encounter-box img').hide();
+  $('.response').hide();
   $('.character').hide();
 
   $('html').on('keydown', function (e) {
@@ -58,7 +59,7 @@ $(function () {
 
   $('#engage').on('click', function () {
     $('.character').hide();
-    $('.options').show();
+    $('.response').show();
   });
 
   $('#ignore').on('click', function () {

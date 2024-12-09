@@ -47,7 +47,11 @@
 	border-bottom: none;
 }
 
-/******** player ********/
+/******** characters ********/
+
+.encounter {
+	box-shadow: 0px 0px 0px 8px yellow inset;
+}
 
 .player-pos {
 	/* border: none; */

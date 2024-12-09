@@ -6,6 +6,7 @@
 	- [ ] reach consensus
 
 ### Malik :
+
 - [ ] handwrite .csv data
 - [ ] create .py that jsonifies it to data/encounters.json
 - [ ] create scripts/encounter_loader.js that take json file
@@ -21,8 +22,9 @@
 		- [ ] positive, negative, neutral
 
 ### chepe
+
 - [ ] create stats mgmt logic
-	- [ ] add dummy button to dummy encounter
+	- [x] add dummy button to dummy encounter
 	- [ ] increment/decrement health and cash
 		- [ ] add color feedback
 
