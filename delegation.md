@@ -32,8 +32,6 @@
 	- [ ] increment/decrement health and cash
 		- [ ] add color feedback
 
-- [ ] encounter mugshot logic
-
 - [ ] inventory mgmt logic
 
 ### bottom priority
@@ -46,7 +44,6 @@
 	- [ ] characters
 	- [ ] obstacles
 	- [ ] city layouts
-
 
 ### maze generator
 
@@ -79,3 +76,4 @@
 	- [x] trigger encounter upon arrival
 		- [x] prevent further movement
 		- [x] update encounter box
+- [x] encounter mugshot logic - **chepe**
