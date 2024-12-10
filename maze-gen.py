@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-from random import choice
+from random import randint, choice
 
-maze_size = 8
+maze_size = 12
 wall_codes = {
     # singles
     'no_wall':  0,
@@ -48,42 +48,42 @@ def print_maze(maze_array):
 
 # only visited unvisited nodes unless they are on the trace-back path
 def next_xy(last_pos):
-    visited_blocks.add(tuple(last_pos))
+    visited_blocks.add(last_pos)
 
-    x = last_pos[0]
-    y = last_pos[1]
-
-    directions = [
-        [x + 1  ,   y       ],
-        [x      ,   y + 1   ],
-        [x - 1  ,   y       ],
-        [x      ,   y - 1   ]
-    ]
+    y = last_pos[0] # row
+    x = last_pos[1] # column
+    directions = {
+        'up':    (y - 1, x    ),
+        'right': (y    , x + 1),
+        'down':  (y + 1, x    ),
+        'left':  (y    , x - 1)
+    }
 
     available = []
+    for item in directions.items():
+        key = item[0]
+        xy = item[1]
+        (newy, newx) = xy
 
-    for xy in directions:
-        newx = xy[0]
-        newy = xy[1]
-        if (tuple(xy) not in visited_blocks and
+        if (xy not in visited_blocks and
             newx >= 0 and
             newx < maze_size and
             newy >= 0 and
             newy < maze_size):
-            available.append(xy)
+            available.append(item)
 
     if len(available) == 0:
         return traceback_path.pop()
 
     traceback_path.append(last_pos)
-    next_pos = choice(available)
-    return next_pos
+    (path, block) = choice(available)
+    # print(path + '\t: ' + str(block))
+    return block
 
 def draw_path():
-    current_pos = [0, 0]
+    current_pos = (0, 0)
     current_pos = next_xy(current_pos)
-    while current_pos != [0, 0]:
-        print(current_pos)
+    while current_pos != (0, 0):
         last_pos = current_pos
         current_pos = next_xy(current_pos)
     print(len(visited_blocks))
