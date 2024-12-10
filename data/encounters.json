@@ -1,194 +1,94 @@
-// Player state
-let playerMoney = 50; // Starting money
-let playerHealth = 100; // Starting health
-const inventory = [];
-
-// Adjust player money
-function adjustPlayerMoney(amount) {
-  playerMoney += amount;
-  alert(`You now have ${playerMoney} money.`);
-  if (playerMoney <= 0) {
-    gameOver();
-  }
-}
-
-// Adjust player health
-function adjustPlayerHealth(amount) {
-  playerHealth += amount;
-  if (playerHealth > 100) playerHealth = 100; // Cap health at 100
-  if (playerHealth <= 0) {
-    alert('You have lost all your health and passed out! Game Over.');
-    gameOver();
-  } else {
-    alert(`Your health is now ${playerHealth}.`);
-  }
-}
-
-// Add an item to inventory
-function addItemToInventory(item) {
-  inventory.push(item);
-  alert(`You received: ${item}`);
-}
-
-// Game Over function
-function gameOver() {
-  alert('You have lost all your money and have been claimed by the streets.\nGame Over');
-  // Reset game state or stop further actions
-  // Optionally, you can add logic to restart the game or show a game over screen
-  // For example, you can disable all further interactions or reload the game
-  location.reload(); // Reload the page to restart the game
-}
-
-// Character interactions
-const characters = [
-  {
-    type: 'thief',
-    description: 'A shady thief lurks here. Be careful, or you might lose what little you have!',
-    onInteract: function () {
-      const choice = prompt('The thief offers to give you some money... for a price. Do you (1) Agree or (2) Decline?');
-      if (choice === '1') {
-        alert('The thief tricks you and steals some of your belongings!');
-        adjustPlayerMoney(-20); // Lose 20 money
-      } else {
-        alert('You wisely walk away from the thief.');
-      }
+[
+    {
+      "id": 1,
+      "type": "thief",
+      "description": "A shady thief lurks in a dark corner, eyeing you suspiciously. \"You don’t look like you belong around here,\" he sneers. \"I just need enough to get out of this miserable city. Hand over your money, or I’ll take it by force.\"",
+      "outcome_positive": "You fight him and lose 10 health, but he mutters, \"Fine, stay trapped here forever like the rest of us!\" as he flees.",
+      "outcome_negative": "The thief smirks, counting the coins he took from you. 'This might just be my ticket out of here,' he says as he vanishes into the shadows.",
+      "reward_type": "money",
+      "reward_amount": -20,
+      "penalty_type": "health",
+      "penalty_amount": -10,
+      "item": "Dirty Mask",
+      "lore": "After the interaction, you find a dirty mask the thief left behind. The inside is lined with stitching marking the years he's been trapped in the city."
+    },
+    {
+      "id": 2,
+      "type": "cop",
+      "description": "A stern-looking police officer stands nearby, watching the crowd. He locks eyes with you and says, \"You look out of place here. You better not make things harder for the rest of us trying to leave this dump.\"",
+      "outcome_positive": "The cop gives you a friendly nod and says, \"I wish I could leave too, but someone has to keep the peace around here.\" He walks away.",
+      "outcome_negative": "He fines you for bribery and scoffs, \"Thanks for the cash. Not that it'll ever be enough to leave this place.\"",
+      "reward_type": "health",
+      "reward_amount": 0,
+      "penalty_type": "money",
+      "penalty_amount": -10,
+      "item": "Rusted Badge",
+      "lore": "You pick up the cop’s badge after the interaction. It’s rusted and worn, reflecting his many years of thankless service in a city he’s never been able to escape."
+    },
+    {
+      "id": 3,
+      "type": "old-man",
+      "description": "An old man sits on the ground, begging for help. \"You don’t seem like one of us,\" he says. \"Please, give me 10 coins. I just need a little more to buy a ticket home. I’m so close to leaving this nightmare.\"",
+      "outcome_positive": "You give him the 10 coins, and he thanks you with tears in his eyes. \"This will help me escape this place. Bless you.\"",
+      "outcome_negative": "You decide to fight him and take his 10 coins. He weeps, \"Why would you do this? I’ll never get out of here now.\"",
+      "reward_type": "money",
+      "reward_amount": 10,
+      "penalty_type": "health",
+      "penalty_amount": -5,
+      "item": "Dirty Syringe",
+      "lore": "After giving the old man some coins, he hands you a suspicious syringe. 'I found this a long time ago,' he explains. 'I don’t need it anymore, but maybe it’ll remind you how desperate this city can make people.'"
+    },
+    {
+      "id": 4,
+      "type": "woman",
+      "description": "A local woman stands by the side of the road. She looks hungry and tired. \"You don’t seem like someone from around here,\" she says softly. \"Could you buy me a meal? I need my strength to keep saving up for a plane ticket out of here.\"",
+      "outcome_positive": "You offer her a meal, and she hands you a health pack. \"This should help you. Maybe we’ll both make it out of here someday.\"",
+      "outcome_negative": "You buy her a meal, but she says, \"Thank you, but now I’m even further from affording my ticket.\" She gives you a health pack anyway, looking heartbroken.",
+      "reward_type": "money",
+      "reward_amount": -15,
+      "penalty_type": "item",
+      "penalty_amount": "health pack",
+      "item": "Phone Number",
+      "lore": "Before parting ways, the woman nervously hands you her phone number. 'If you make it out of here, please call me. Maybe you’ll inspire me to escape too.'"
+    },
+    {
+      "id": 5,
+      "type": "trash",
+      "description": "You come across a pile of trash in an alley. A passerby looks at you oddly and mutters, \"What’s someone like you doing here? Digging through garbage won't get you out of this city.\"",
+      "outcome_positive": "You find 10 coins, a small blessing that feels like a step toward escape.",
+      "outcome_negative": "You cut your hand on a broken bottle and feel ill. You wonder if you’ll ever make it out alive.",
+      "reward_type": "money",
+      "reward_amount": 10,
+      "penalty_type": "health",
+      "penalty_amount": -15,
+      "item": "None",
+      "lore": "The trash offers no new insights about the city, only reflecting its decay and hopelessness."
+    },
+    {
+      "id": 6,
+      "type": "store",
+      "description": "A small, run-down store stands in front of you. The owner greets you and says, \"You’re not one of our regulars, are you? I’ve got health packs for sale. I just need to sell a few more to finally leave this place.\"",
+      "outcome_positive": "You buy a health pack for 5 coins, and the shopkeeper smiles faintly. \"Every coin counts. Thanks.\"",
+      "outcome_negative": "You walk away with no purchase, and the storekeeper sighs. \"Not like I’ll ever sell enough to get out anyway.\"",
+      "reward_type": "health",
+      "reward_amount": 5,
+      "penalty_type": "money",
+      "penalty_amount": -5,
+      "item": "Old Receipt",
+      "lore": "The storekeeper hands you a receipt with scribbled notes on the back. It tells of how he came to the big city for a software engineering job, but when those dreams fell through, he ended up here, selling health packs."
+    },
+    {
+      "id": 7,
+      "type": "hotel",
+      "description": "You find a cozy hotel with a well-dressed clerk who eyes you curiously. \"You don’t seem like our usual guest,\" they say. \"Even if you can afford to stay, this city traps us all. For 20 coins, I’ll give you a good rest.\"",
+      "outcome_positive": "You spend the night at the hotel, spending 20 coins but waking up feeling rejuvenated. The clerk says, \"I hope you’re luckier than me at finding a way out.\"",
+      "outcome_negative": "You decide not to stay. The clerk shrugs and says, \"Suit yourself. Maybe you’ll find a way out before I do.\"",
+      "reward_type": "health",
+      "reward_amount": 10,
+      "penalty_type": "money",
+      "penalty_amount": -20,
+      "item": "Hotel Key Card",
+      "lore": "The clerk hands you an old key card after your stay. 'I’ve been here since birth,' they explain. 'I don’t want to leave, but it breaks my heart to see tourists trapped here. I hope you make it out.'"
     }
-  },
-  {
-    type: 'cop',
-    description: 'A police officer stands nearby, observing everything.',
-    onInteract: function () {
-      const choice = prompt('The cop asks if you have proper identification. Do you (1) Explain your situation or (2) Try to bribe?');
-      if (choice === '1') {
-        alert('The cop feels sorry for you and gives you some helpful advice.');
-        adjustPlayerHealth(10); // Gain 10 health
-      } else {
-        alert('The cop catches you bribing and fines you!');
-        adjustPlayerMoney(-10); // Lose 10 money
-      }
-    }
-  },
-  {
-    type: 'old-man',
-    description: 'An old man sits here, looking friendly.',
-    onInteract: function () {
-      const choice = prompt('The old man offers to tell you where to find resources. Do you (1) Listen or (2) Ignore him?');
-      if (choice === '1') {
-        alert('The old man shares a valuable tip!');
-        adjustPlayerMoney(10); // Gain 10 money
-      } else {
-        alert('You miss out on some helpful advice.');
-      }
-    }
-  },
-  {
-    type: 'woman',
-    description: 'A local woman is standing here, looking curious.',
-    onInteract: function () {
-      const choice = prompt('The woman offers to sell you a first aid kit for 15 money. Do you (1) Buy or (2) Decline?');
-      if (choice === '1') {
-        if (playerMoney >= 15) {
-          alert('You bought a first aid kit. It might save you later!');
-          adjustPlayerMoney(-15); // Lose 15 money
-          addItemToInventory('first aid kit');
-        } else {
-          alert('You don’t have enough money!');
-        }
-      } else {
-        alert('You decline the offer and walk away.');
-      }
-    }
-  }
-];
-
-// Trash digging interaction
-function digThroughTrash() {
-  const outcome = Math.random();
-  if (outcome < 0.3) {
-    alert('You found some money in the trash!');
-    adjustPlayerMoney(10); // Gain 10 money
-  } else if (outcome < 0.6) {
-    alert('You accidentally cut yourself while digging through the trash.');
-    adjustPlayerHealth(-15); // Lose 15 health
-  } else {
-    alert('You found some useful scraps that might help later.');
-    addItemToInventory('scraps');
-  }
-}
-
-// Store interaction
-function visitStore() {
-  const choice = prompt('Welcome to the store! Choose an option: (1) Buy food (+20 health for 10 money), (2) Buy water (+10 health for 5 money), (3) Leave.');
-  if (choice === '1') {
-    if (playerMoney >= 10) {
-      alert('You bought food and regained some health.');
-      adjustPlayerMoney(-10); // Lose 10 money
-      adjustPlayerHealth(20); // Gain 20 health
-    } else {
-      alert('You don’t have enough money!');
-    }
-  } else if (choice === '2') {
-    if (playerMoney >= 5) {
-      alert('You bought water and regained some health.');
-      adjustPlayerMoney(-5); // Lose 5 money
-      adjustPlayerHealth(10); // Gain 10 health
-    } else {
-      alert('You don’t have enough money!');
-    }
-  } else {
-    alert('You leave the store.');
-  }
-}
-
-// Randomly place characters, trash, and stores in the maze
-function addInteractiveElements(layout, count) {
-  const mazeHeight = layout.length;
-  const mazeWidth = layout[0].length;
-
-  for (let i = 0; i < count; i++) {
-    let placed = false;
-
-    while (!placed) {
-      const row = Math.floor(Math.random() * mazeHeight);
-      const col = Math.floor(Math.random() * mazeWidth);
-
-      const isOccupied = $(`.row${row} .col${col}`).hasClass('interactive');
-
-      if (!isOccupied) {
-        const elementType = Math.random();
-        if (elementType < 0.6) {
-          // Place a character
-          const character = characters[Math.floor(Math.random() * characters.length)];
-          $(`.row${row} .col${col}`)
-            .addClass(`interactive ${character.type}`)
-            .attr('title', character.description)
-            .on('click', function () {
-              character.onInteract();
-            });
-        } else if (elementType < 0.8) {
-          // Place trash
-          $(`.row${row} .col${col}`)
-            .addClass('interactive trash')
-            .attr('title', 'A pile of trash is here. Maybe you should check it out.')
-            .on('click', function () {
-              digThroughTrash();
-            });
-        } else {
-          // Place a store
-          $(`.row${row} .col${col}`)
-            .addClass('interactive store')
-            .attr('title', 'A store is here. Maybe you can buy something useful.')
-            .on('click', function () {
-              visitStore();
-            });
-        }
-
-        placed = true;
-      }
-    }
-  }
-}
-
-// Export functions
-export { addInteractiveElements };
-
+  ]
+  
