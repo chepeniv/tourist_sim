@@ -58,6 +58,7 @@ In **Sunburn Shores**, the dream of a perfect vacation has turned into a nightma
 4. **Survive**: Manage your money and health carefully—every interaction affects your resources.  
 
 ---
+
 ## 💡 **How to Run**
 
 ### Clone the Repository:
