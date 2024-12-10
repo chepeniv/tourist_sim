@@ -28,14 +28,14 @@ wall_codes = {
     'l_b':      14,
 }
 
-traceback_path = [[0, 0]]
+traceback_path = [] #[0, 0]
 visited_blocks = []
 
 def print_maze(maze_array):
     for row in maze_array:
         print(row)
 
-def get_xy(current_pos):
+def next_xy(current_pos):
     x = current_pos[0]
     y = current_pos[1]
     directions = [
@@ -77,11 +77,11 @@ def init_maze(size):
 
 print_maze(init_maze(maze_size))
 
-current_pos = [0, 0]
-# while true
-for i in range(maze_size * 4):
-    print(current_pos)
-    last_pos = current_pos
-    current_pos = get_xy(current_pos)
-    # break if position returned is [0, 0]
+def draw_path():
+    current_pos = [0, 0]
+    current_pos = next_xy(current_pos)
+    while current_pos != [0, 0]:
+        print(current_pos)
+        last_pos = current_pos
+        current_pos = next_xy(current_pos)
 
