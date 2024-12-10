@@ -92,7 +92,10 @@ function initEncounter () {
     pos.addClass('active');
     $('.encounter-box h3').text('Name');
     $('.encounter-box img').show();
-    $('.character').show();
+
+    $('.interaction').show();
+    $('#dismiss button').text('ignore');
+    $('#engage button').text('engage');
   }
 }
 
@@ -103,19 +106,22 @@ function engageEncounter () {
     $('.encounter-box p').text(data);
   }, 'text');
 
+  $('.items-table').addClass('ready-selection');
+
   $('.encounter-box img').hide();
-  $('.character').hide();
+  $('.interaction').hide();
 
   $('.encounter-box p').show();
   $('.response').show();
 }
 
 function endEncounter () {
+  $('.items-table').removeClass('ready-selection');
   $('.player-pos').removeClass('encounter active');
   $('.encounter-box h3').text('Encounters');
   $('.encounter-box img').hide();
   $('.encounter-box p').hide();
-  $('.character').hide();
+  $('.interaction').hide();
   $('.response').hide();
 }
 
@@ -127,14 +133,17 @@ $(function () {
   $('.encounter-box img').hide();
   $('.encounter-box p').hide();
   $('.response').hide();
-  $('.character').hide();
+  $('.interaction').hide();
 
   $('html').on('keydown', function (e) {
     initEncounter();
   });
 
   $('#engage').on('click', function () {
-    engageEncounter();
+    const pos = $('.player-pos');
+    if (pos.hasClass('encounter')) {
+      engageEncounter();
+    }
   });
 
   $('#dismiss').on('click', function () {
@@ -151,5 +160,14 @@ $(function () {
 
   $('#rude').on('click', function () {
     respondNegatively();
+  });
+
+  $('.items-table').on('click', 'td', function () {
+    const ready = $('.inventory table').hasClass('ready-selection');
+    if (ready) {
+      $(this).removeClass('full-slot');
+      $(this).addClass('empty-slot');
+      endEncounter();
+    }
   });
 });

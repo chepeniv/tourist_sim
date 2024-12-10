@@ -7,8 +7,11 @@ const up = 38;
 const right = 39;
 const down = 40;
 
-function encounterEngaged (position) {
-  return position.hasClass('encounter');
+function interactionEngaged (position) {
+  return (
+    position.hasClass('encounter') ||
+    position.hasClass('item-block')
+  );
 }
 
 function reachedExit () {
@@ -87,7 +90,7 @@ $(function () {
     if (
       e.keyCode < left ||
       down < e.keyCode ||
-      encounterEngaged(oldPos)
+      interactionEngaged(oldPos)
     ) {
       return;
     }
