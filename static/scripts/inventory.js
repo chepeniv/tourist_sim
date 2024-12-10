@@ -17,7 +17,18 @@ function dropRandItems (size) {
   for (let i = 0; i < size; i++) {
     const randX = Math.floor(Math.random() * size);
     const randY = Math.floor(Math.random() * size);
-    $(`.${randY} .${randX}`).addClass('item-block');
+    const randBlock = $(`.${randY} .${randX}`);
+    const isTaken = (
+      randBlock.hasClass('encounter') ||
+      randBlock.hasClass('item-block') ||
+      randBlock.hasClass('player-pos')
+    );
+
+    if (!isTaken) {
+      randBlock.addClass('item-block');
+    } else {
+      i--;
+    }
   }
 }
 

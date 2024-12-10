@@ -82,3 +82,4 @@
 - [x] core inventory mgmt logic **chepe**
 - [x] add inventory interaction
 - [x] add inventory-encounter interaction
+- [x] prevent interaction blocks from spawning over each other **chepe**

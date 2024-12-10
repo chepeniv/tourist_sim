@@ -82,7 +82,18 @@ function createEncounters (size) {
   for (let i = 0; i < size; i++) {
     const randX = Math.floor(Math.random() * size);
     const randY = Math.floor(Math.random() * size);
-    $(`.${randY} .${randX}`).addClass('encounter');
+    const randBlock = $(`.${randY} .${randX}`);
+    const isTaken = (
+      randBlock.hasClass('encounter') ||
+      randBlock.hasClass('item-block') ||
+      randBlock.hasClass('player-pos')
+    );
+
+    if (!isTaken) {
+      randBlock.addClass('encounter');
+    } else {
+      i--;
+    }
   }
 }
 
@@ -134,8 +145,9 @@ $(function () {
 
   $('.encounter-box img').hide();
   $('.encounter-box p').hide();
-  $('.response').hide();
   $('.interaction').hide();
+  $('.response').hide();
+  $('.consequence').hide();
 
   $('html').on('keydown', function (e) {
     initEncounter();
