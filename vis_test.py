@@ -1,5 +1,6 @@
 import pygame
 from random import choice
+import json
 
 
 # Setup
@@ -13,7 +14,7 @@ clock = pygame.time.Clock()
 
 # Initialization
 x, y = 0, 0 # Starting position
-size = 50 # cell size
+size = 100 # cell size
 half_size = size//2
 cols, rows = width//size, height//size
 line_width = 3
@@ -24,7 +25,7 @@ current_cell_color = pygame.Color('saddlebrown')
 solution_color = pygame.Color('darkslategray')
 flag = True
 find_solution = False
-paused = True
+paused = False
 
 
 class Cell:
@@ -84,7 +85,16 @@ class Cell:
         if right and not right.visited:
             neighbors.append(right)
         return choice(neighbors) if neighbors else False
-    
+
+    def to_dict(self):
+        return {
+            'x': self.x,
+            'y': self.y,
+            'walls': self.walls.copy(),
+            'path': self.path.copy(),
+            'visited': self.visited,
+            'solution': self.solution
+        }
 
 def remove_walls(current, next):
     dx, dy = current.x - next.x, current.y - next.y
@@ -116,12 +126,23 @@ def add_solution_path(previous, current):
     if dy == -1:
         current.path['bottom'] = True
         previous.path['top'] = True
-    
 
 grid_cells = [Cell(col,row) for row in range(rows) for col in range(cols)]
 current_cell = grid_cells[0]
 stack = []
 solution = []
+
+def export_maz_to_json(grid_cells):
+    maze_data = {}
+    for i, cell in enumerate(grid_cells):
+        maze_data[f'cell_{i}'] = cell.to_dict()
+
+    try:
+        with open('mazes.json', 'w') as f:
+            json.dump(maze_data, f, indent=4)
+        print("Maze data has been successfully exported to mazes.json")
+    except IOError as e:
+        print(f"An error ocurred while writing the file: {e}")
 
 
 while True:
@@ -168,6 +189,8 @@ while True:
                     previous_cell = current_cell
                     current_cell = grid_cells[0]
                     add_solution_path(previous_cell, current_cell)
-        
+
     pygame.display.flip()
     clock.tick(fps)
+
+export_maze_to_json(grid_cells)

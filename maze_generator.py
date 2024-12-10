@@ -2,11 +2,9 @@
 from random import choice
 import json
 
-
-size = 12
+size = 4
 cols = size
 rows = size
-
 
 class Cell:
     def __init__(self, x, y):
@@ -40,9 +38,13 @@ def generate_maze():
     global grid_cells
     grid_cells = [[Cell(x, y) for y in range(size)] for x in range(size)]
 
-    def dfs(current):
-        current.visited = True
+    stack = []
+    start = grid_cells[0][0]
+    stack.append(start)
 
+    while stack:
+        current = stack[-1]  # Get the last cell from the stack
+        
         neighbors = []
         top = current.check_cell(current.x, current.y-1)
         left = current.check_cell(current.x-1, current.y)
@@ -61,10 +63,11 @@ def generate_maze():
         if neighbors:
             next_cell = choice(neighbors)
             remove_walls(current, next_cell)
-            dfs(next_cell)
-
-    start = grid_cells[0][0]
-    dfs(start)
+            next_cell.visited = True
+            stack.append(next_cell)
+        else:
+            # Backtrack when no unvisited neighbors found
+            stack.pop()
 
 def maze_to_json(maze):
     def cell_to_number(cell):
@@ -91,7 +94,7 @@ def maze_to_json(maze):
         elif walls['right'] and walls['bottom']:
             return 9
         else:
-            ValueError()
+            raise ValueError("Invalid wall configuration")
 
     return [[cell_to_number(cell) for cell in row] for row in maze]
 
