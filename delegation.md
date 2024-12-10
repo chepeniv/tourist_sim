@@ -2,26 +2,39 @@
 
 ## in progress
 
+- [ ] standardize map file layout
+	- [ ] reach consensus
+
+### Malik :
+- [ ] handwrite .csv data
+- [ ] create .py that jsonifies it to data/encounters.json
+- [ ] create scripts/encounter_loader.js that take json file
+
+- [ ] write out encounters ideas
+	- [ ] title / id num
+	- [ ] character
+		- [ ] name, image url
+	- [ ] dialogue text
+	- [ ] response text
+		- [ ] positive, negative, neutral
+	- [ ] outcome codes
+		- [ ] positive, negative, neutral
+
+### chepe
+- [ ] create stats mgmt logic
+	- [ ] add dummy button to dummy encounter
+	- [ ] increment/decrement health and cash
+		- [ ] add color feedback
+
 ### top priority
 
-- [ ] implement map edge detection - **chepe**
-- [ ] implement block types - **chepe**
-	- [ ] path, exit, enter, dead-end
+- [ ] slide show
+- [ ] readme
 
 ### bottom priority
 
 ## queue
 
-- [ ] write out outline for maze building algorithm
-- [ ] write out encounters ideas
-- [ ] Craft Maze
-- [ ] Craft Encounter
-- [ ] Stat Management
-- [ ] Build Webpage
-- [ ] CSS
-- [ ] Jquery
-- [ ] Sucess, Failure Popups
-- [ ] Slide show!
 - [ ] build, standardize, and organize asset library
 	- [ ] handcrafted mazes
 	- [ ] backgrounds
@@ -29,16 +42,6 @@
 	- [ ] obstacles
 	- [ ] city layouts
 
-### maze
-
-- [ ] standardize map file layout
-- [ ] make dead-end
-
-- [ ] make handcrafted map
-	- [ ] make cross map
-	- [ ] implement handcrafted map
-
-- [ ] implement map transformation
 
 ### maze generator
 
@@ -49,14 +52,25 @@
 
 ## extra
 
-- [ ] Random Generator
-- [ ] Dialogue
-- [ ] Outcomes
-- [ ] More stats like being positioned and such
-- [ ] Characters
-- [ ] Images
+- [ ] implement map transformation
+- [ ] random generator
+- [ ] more stats like being positioned and such
+- [ ] create data structures and algorithms for prime number encoding
 
 ## completed
 
 - [x] build grid - **chepe**
 - [x] implement movement and feedback - **chepe**
+- [x] make handcrafted map - **chepe**
+	- [x] implement handcrafted map
+- [x] implement map edge detection - **chepe**
+- [x] implement block types - **chepe**
+	- [x] path, exit, enter, dead-end
+- [x] add inventory - **chepe**
+	- [x] html and css
+	- [x] layout grid
+- [x] craft encounter logic - **chepe**
+	- [x] populate map with encounters
+	- [x] trigger encounter upon arrival
+		- [x] prevent further movement
+		- [x] update encounter box

@@ -1,10 +1,6 @@
-/* html { */
-/* 	height: 100%; */
-/* } */
-
 body {
     font-family: Arial, Helvetica, sans-serif;
-	/* background-color: #BBBBBB; */
+	/* background-color: #262626; */
 }
 
 .banner {
@@ -13,70 +9,36 @@ body {
 
 .game {
 	display: grid;
-	grid-template: auto auto auto / auto auto auto;
-	border: 1px solid black;
+	grid-template: auto auto auto / auto auto 35%;
 	margin: auto;
-	width: 80vw;
+	width: 75vw;
 }
 
 .map {
 	grid-row: 1 / span 3;
 	grid-column: 1 / span 2;
 	aspect-ratio: 1/1;
-	border: 1px solid green;
-	padding: 0px;
+	min-width: 85%;
 }
 
 .map-bg {
 }
 
-.maze {
-	width: 100%;
-	height: 100%;
-	border-collapse: collapse;
-}
-
-.row {
-	width: 100%;
-}
-
-.block {
-	aspect-ratio: 1/1;
-	/* background-color: lightyellow; */
-	border: 1px solid pink;
-}
-
-.player_pos {
-	border: none;
-	background-color: orange;
-}
-
-.encounter {
-	grid-row: 3;
+.hud {
+	display: flex;
+	flex-direction: column;
+	grid-row: 1 / span 3;
 	grid-column: 3;
-	aspect-ratio: 3/2;
-	border: 1px solid blue;
-	left: 0px;
-	width: 100%;
-}
-
-.dialogue {
-}
-
-.options {
 }
 
 .stats-box {
-	grid-row: 1;
-	grid-column: 3;
-	padding: 0px 5% 10px;
-	margin: auto;
-	width: 90%;
-	height: 15%;
+	padding: 0% 5%;
+	height: 12%;
 	min-height: 100px;
-	border: 1px solid red;
+	/* border: 1px solid red; */
 
 	h3 {
+		text-align: center;
 		margin: 1px;
 	}
 
@@ -85,9 +47,21 @@ body {
 	}
 }
 
-.stat {
-	height: 15%;
-	background-color: red;
-	margin: 1px;
-	padding: 0px;
+.inventory {
+	text-align: center;
+	height: 45%;
+
+	h3 {
+		border: none;
+		margin-top: 0%;
+		margin-bottom: 0%;
+		padding: 0%;
+		height: 8%;
+	}
+}
+
+.encounters-box {
+	border: 1px solid blue;
+	text-align: center;
+	height: 43%;
 }

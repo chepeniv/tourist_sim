@@ -7,9 +7,18 @@
 	<title>Tourist Simulator Deluxe</title>
 
 	<link rel="stylesheet" href="styles/homepage.css">
+	<link rel="stylesheet" href="styles/maze.css">
+	<link rel="stylesheet" href="styles/encounter.css">
+	<link rel="stylesheet" href="styles/inventory.css">
+	<link rel="stylesheet" href="styles/stats.css">
 
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="scripts/maze.js"></script>
+	<script type="text/javascript" src="scripts/homepage.js"></script>
+	<script type="text/javascript" src="scripts/maze_grid.js"></script>
+	<script type="text/javascript" src="scripts/maze_draw.js"></script>
+	<script type="text/javascript" src="scripts/navigation.js"></script>
+	<script type="text/javascript" src="scripts/encounters.js"></script>
+	<script type="text/javascript" src="scripts/inventory.js"></script>
 </head>
 
 <body>
@@ -20,27 +29,51 @@
 <div class="game">
 	<div class="map">
 		<div class="map-bg"></div>
-		<table class="maze">
-		<!-- jquery generated blocks -->
-		</table>
+		<table class="maze"></table>
 	</div>
 
-	<div class="encounter">
-		<div class="character"></div>
-		<div class="dialogue">
-			<!-- jquery generated dialog -->
-			<ul class="options">
-			<!-- jquery generated options -->
-			</ul>
+	<span class="hud">
+		<div class="stats-box">
+			<h3>Stats</h3>
+			<h4>Health</h4>
+			<div class="stat"></div>
+			<h4>Cash</h4>
+			<div class="stat"></div>
 		</div>
-	</div>
 
-	<span class="stats-box">
-		<h3>stats</h3>
-		<h4>health</h4>
-		<div class="stat"></div>
-		<h4>cash</h4>
-		<div class="stat"></div>
+		<div class="inventory">
+			<h3>Inventory</h3>
+			<table class="items-table"></table>
+		</div>
+
+		<div class="encounters-box">
+			<h3>Encounters</h3>
+			<span class="character">
+				<div id="ignore">
+					<button>ignore</button>
+				</div>
+				<div id="engage">
+					<button>engage</button>
+				</div>
+			</span>
+
+			<span class="dialogue">
+				<h4></h4>
+				<p></p>
+				<div class="options">
+					<div id="rude">
+						<button>rude</button>
+					</div>
+					<div id="mellow">
+						<button>mellow</button>
+					</div>
+					<div id="polite">
+						<button>polite</button>
+					</div>
+				</div>
+			</span>
+		</div>
+
 	</span>
 </div>
 </body>
