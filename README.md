@@ -4,6 +4,14 @@ Welcome to the **Tourist Trap Simulator**, where you play as a traveler stuck in
 
 ---
 
+## ✨ **Authors**  
+
+- **Malik Vance** (ATLAS SCHOOL, GitHub: [SpaceDandy15](https://github.com/SpaceDandy15))  
+- **Michael Ballou** (ATLAS SCHOOL, GitHub: [MBall0u](https://github.com/MBall0u))  
+- **Jose N. Olmos AKA CHEPE** (ATLAS SCHOOL, GitHub: [chepeniv](https://github.com/chepeniv))  
+
+---
+
 ## 🌟 **Features**
 
 - **Escape Routes**: Explore dynamically generated mazes to find your way out of the city.  
@@ -50,23 +58,24 @@ In **Sunburn Shores**, the dream of a perfect vacation has turned into a nightma
 4. **Survive**: Manage your money and health carefully—every interaction affects your resources.  
 
 ---
-
 ## 💡 **How to Run**
-Clone the Repository:
 
-git clone https://github.com/yourusername/tourist_sim.git  
-cd tourist_sim 
-
+### Clone the Repository:
+```bash
+git clone https://github.com/yourusername/tourist_sim.git
+cd tourist_sim
 Install the Dependencies:
 
-pip install -r requirements.txt  
-
+'''bash
+Copy code
+pip install -r requirements.txt
 Run the Application:
 
-python frontend.py  
-Open the Game:
+'''bash
+Copy code
+python frontend.py
 
-Open your browser and go to http://127.0.0.1:5000.
+Open the Game: Navigate to http://127.0.0.1:5000 in your browser.
 
 ---
 
@@ -92,11 +101,3 @@ Open your browser and go to http://127.0.0.1:5000.
 ├── utility/                   
 │   ├── create_json.py         # Script to generate JSON from CSV  
 │   ├── fetch_interaction.py   # Fetch and handle encounters logic  
-
----
-
-## ✨ **Authors**  
-
-- **Malik Vance** (ATLAS SCHOOL, GitHub: [SpaceDandy15](https://github.com/SpaceDandy15))  
-- **Michael Ballou** (ATLAS SCHOOL, GitHub: [MBall0u](https://github.com/MBall0u))  
-- **Jose N. Olmos AKA CHEPE** (ATLAS SCHOOL, GitHub: [chepeniv](https://github.com/chepeniv))  
