@@ -19,9 +19,9 @@ const stats = {
 };
 
 function getColor (num) {
-  const red = Math.floor(255 * (100 - num) / 100);
+  const red = Math.floor(255 * (100 - num) / 200);
   const green = Math.floor(255 * num / 100);
-  const blue = Math.floor(255 * num / 100 / 2);
+  const blue = Math.floor(255 * num / 600);
   return `rgb(${red}, ${green}, ${blue})`;
 }
 
@@ -107,6 +107,7 @@ function engageEncounter () {
   }, 'text');
 
   $('.items-table').addClass('ready-selection');
+  $('.inventory h3').text('Select Item');
 
   $('.encounter-box img').hide();
   $('.interaction').hide();
@@ -118,6 +119,7 @@ function engageEncounter () {
 function endEncounter () {
   $('.items-table').removeClass('ready-selection');
   $('.player-pos').removeClass('encounter active');
+  $('.inventory h3').text('Inventory');
   $('.encounter-box h3').text('Encounters');
   $('.encounter-box img').hide();
   $('.encounter-box p').hide();
@@ -163,11 +165,19 @@ $(function () {
   });
 
   $('.items-table').on('click', 'td', function () {
-    const ready = $('.inventory table').hasClass('ready-selection');
-    if (ready) {
+    const table = $('.items-table');
+    const tableIsFull = table.hasClass('inventory-full');
+    const tableIsReady = table.hasClass('ready-selection');
+    const slotIsFull = $(this).hasClass('full-slot');
+    if (tableIsReady && !tableIsFull && slotIsFull) {
       $(this).removeClass('full-slot');
       $(this).addClass('empty-slot');
       endEncounter();
+    } else if (tableIsFull) {
+      $(this).removeClass('full-slot');
+      $(this).addClass('empty-slot');
+      table.removeClass('inventory-full');
+      $('.inventory h3').text('Inventory');
     }
   });
 });

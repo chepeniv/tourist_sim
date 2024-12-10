@@ -1,7 +1,7 @@
 #!/usr/bin/node
 /* global $ */
 
-const tableSize = 4;
+const tableSize = 2;
 
 function inventoryRow (size) {
   $('.items-table').append('<tr class="items-row"></tr>');
@@ -28,11 +28,11 @@ function inventoryTable (size) {
 }
 
 function acceptItem () {
-  const pos = $('.player-pos');
-  if (pos.hasClass('item-block')) {
-    const emptySlot = $('.empty-slot').first();
-    emptySlot.addClass('full-slot');
-    emptySlot.removeClass('empty-slot');
+  const isFull = $('.items-table').hasClass('inventory-full');
+  if (!isFull) {
+    const freeSlot = $('.empty-slot').first();
+    freeSlot.addClass('full-slot');
+    freeSlot.removeClass('empty-slot');
     clearItem();
   }
 }
@@ -44,6 +44,7 @@ function clearItem () {
     $('.encounter-box h3').text('Encounters');
     $('.encounter-box img').hide();
     $('.interaction').hide();
+    $('.items-table').removeClass('inventory-full');
   }
 }
 
@@ -56,6 +57,12 @@ function initItemInteraction () {
     $('.interaction').show();
     $('#dismiss button').text('decline');
     $('#engage button').text('pickup');
+
+    const freeSlot = $('.empty-slot');
+    if (!freeSlot[0]) {
+      $('.items-table').addClass('inventory-full');
+      $('.inventory h3').text('Remove Item');
+    }
   }
 }
 
