@@ -1,0 +1,23 @@
+.stats-box {
+	h3 {
+		text-align: center;
+		margin: 1px;
+	}
+
+	h4 {
+		margin: 1px;
+	}
+
+	div {
+		height: 15%;
+		background-color: #ff0000;
+		margin: 1px;
+		padding: 0px;
+	}
+}
+
+.health {
+}
+
+.cash {
+}

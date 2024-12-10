@@ -1,0 +1,17 @@
+.items-table {
+	width: 100%;
+	height: 92%;
+	border-collapse: collapse;
+}
+
+.items-row{
+}
+
+.full-slot {
+	background-color: lightskyblue;
+	box-shadow: 0px 0px 0px 8px white inset;
+}
+
+.empty-slot {
+	box-shadow: 0px 0px 0px 1px lightsalmon inset;
+}
