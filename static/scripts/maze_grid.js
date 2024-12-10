@@ -35,8 +35,19 @@ function buildRow (size, y) {
 
 function setEntry (size) {
   const entry = padNum(size);
-  const row = `.${entry} .0`;
-  $(row).addClass('player-pos');
+  const initPos = `.${entry} .0`;
+  const initBlock = $(initPos);
+
+  const isTaken = (
+    initBlock.hasClass('encounter') ||
+    initBlock.hasClass('item-block')
+  );
+
+  if (!isTaken) {
+    initBlock.addClass('player-pos');
+  } else {
+    setEntry(size);
+  }
 }
 
 function setExits (size) {
