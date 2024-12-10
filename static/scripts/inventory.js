@@ -27,13 +27,35 @@ function inventoryTable (size) {
   }
 }
 
-function examineItem () {
+function acceptItem () {
   const pos = $('.player-pos');
-  const emptySlot = $('.empty-slot').first();
   if (pos.hasClass('item-block')) {
-    pos.removeClass('item-block');
+    const emptySlot = $('.empty-slot').first();
     emptySlot.addClass('full-slot');
     emptySlot.removeClass('empty-slot');
+    clearItem();
+  }
+}
+
+function clearItem () {
+  const pos = $('.player-pos');
+  if (pos.hasClass('item-block')) {
+    pos.removeClass('item-block');
+    $('.encounter-box h3').text('Encounters');
+    $('.encounter-box img').hide();
+    $('.interaction').hide();
+  }
+}
+
+function initItemInteraction () {
+  const pos = $('.player-pos');
+  if (pos.hasClass('item-block')) {
+    $('.encounter-box h3').text('Item');
+    $('.encounter-box img').show();
+
+    $('.interaction').show();
+    $('#dismiss button').text('decline');
+    $('#engage button').text('pickup');
   }
 }
 
@@ -42,6 +64,17 @@ $(function () {
   dropRandItems(8);
 
   $('html').on('keydown', function (e) {
-    examineItem();
+    initItemInteraction();
+  });
+
+  $('#engage').on('click', function () {
+    const pos = $('.player-pos');
+    if (pos.hasClass('item-block')) {
+      acceptItem();
+    }
+  });
+
+  $('#dismiss').on('click', function () {
+    clearItem();
   });
 });

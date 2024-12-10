@@ -27,8 +27,7 @@
 
 ### chepe
 
-- [ ] add inventory interaction
-- [ ] add inventory-encounter interaction
+- [ ] add inventory selection consequences
 
 ### bottom priority
 
@@ -42,6 +41,9 @@
 	- [ ] city layouts
 
 ### maze generator
+
+- [ ] adjust stat colors
+- [ ] reduce inventory slots
 
 - [ ] 12x12 format being generated
 - [ ] one entrance and then one exit on each side
@@ -78,3 +80,5 @@
 	- [x] increment/decrement health and cash
 		- [x] add color feedback
 - [x] core inventory mgmt logic **chepe**
+- [x] add inventory interaction
+- [x] add inventory-encounter interaction
