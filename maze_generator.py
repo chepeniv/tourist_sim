@@ -2,6 +2,7 @@
 from random import choice
 import json
 
+
 size = 4
 cols = size
 rows = size
@@ -20,7 +21,7 @@ class Cell:
 
 def remove_walls(current, next):
     dx = current.x - next.x
-    dy = current.y, next.y
+    dy = current.y - next.y
     if dx == 1:
         current.walls['left'] = False
         next.walls['right'] = False
@@ -33,68 +34,83 @@ def remove_walls(current, next):
     if dy == -1:
         current.walls['bottom'] = False
         next.walls['top'] = False
+    print(f"{current.walls}")
+    print(f"{next.walls}")
 
 def generate_maze():
     global grid_cells
     grid_cells = [[Cell(x, y) for y in range(size)] for x in range(size)]
 
-    stack = []
+    def dfs(current):
+        current.visited = True
+        print(f"Visiting cell ({current.x}, {current.y})")
+        print(f"Current walls: {current.walls}")
+        print(f"Neighbors: {current.walls['top']}, {current.walls['left']}, {current.walls['bottom']}, {current.walls['right']}")
+
+        stack = [current]
+        while stack:
+            current = stack[-1]
+            print(f"Visiting cell ({current.x}, {current.y})")
+            print(f"Current walls: {current.walls}")
+            print(f"Neighbors: {current.walls['top']}, {current.walls['left']}, {current.walls['bottom']}, {current.walls['right']}")
+            neighbors = []
+            top = current.check_cell(current.x, current.y-1)
+            left = current.check_cell(current.x-1, current.y)
+            bottom = current.check_cell(current.x, current.y+1)
+            right = current.check_cell(current.x+1, current.y)
+
+            if top and not top.visited:
+                neighbors.append(top)
+            if left and not left.visited:
+                neighbors.append(left)
+            if bottom and not bottom.visited:
+                neighbors.append(bottom)
+            if right and not right.visited:
+                neighbors.append(right)
+
+            if neighbors:
+                next_cell = choice(neighbors)
+                remove_walls(current, next_cell)
+                next_cell.visited = True
+                print(f"Removing walls between ({current.x}, {current.y}) and ({next_cell.x}, {next_cell.y})")
+                stack.append(next_cell)
+            else:
+                print("backtracking by one")
+                stack.pop()
+
     start = grid_cells[0][0]
-    stack.append(start)
-
-    while stack:
-        current = stack[-1]  # Get the last cell from the stack
-        
-        neighbors = []
-        top = current.check_cell(current.x, current.y-1)
-        left = current.check_cell(current.x-1, current.y)
-        bottom = current.check_cell(current.x, current.y+1)
-        right = current.check_cell(current.x+1, current.y)
-
-        if top and not top.visited:
-            neighbors.append(top)
-        if left and not left.visited:
-            neighbors.append(left)
-        if bottom and not bottom.visited:
-            neighbors.append(bottom)
-        if right and not right.visited:
-            neighbors.append(right)
-
-        if neighbors:
-            next_cell = choice(neighbors)
-            remove_walls(current, next_cell)
-            next_cell.visited = True
-            stack.append(next_cell)
-        else:
-            # Backtrack when no unvisited neighbors found
-            stack.pop()
+    dfs(start)
 
 def maze_to_json(maze):
     def cell_to_number(cell):
         walls = cell.walls.copy()
 
-        if walls['top'] and walls['bottom'] and walls['right']:
-            return 3
-        elif walls['top'] and walls['bottom'] and walls['left']:
-            return 4
-        elif walls['top'] and walls['right'] and walls['left']:
-            return 2
-        elif walls['right'] and walls['left'] and walls['bottom']:
-            return 5
-        elif walls['top'] and walls['bottom']:
-            return 0
+        if walls['top'] and walls['bottom']:
+            if walls['left'] and walls['right']:
+               return 3  # All walls
+            elif walls['left']:
+                return 4  # Top and bottom, left
+            elif walls['right']:
+                return 5  # Top and bottom, right
+            else:
+                return 0  # Top and bottom only
         elif walls['left'] and walls['right']:
-            return 1
-        elif walls['top'] and walls['left']:
-            return 6
-        elif walls['top'] and walls['right']:
-            return 7
-        elif walls['left'] and walls['bottom']:
-            return 8
-        elif walls['right'] and walls['bottom']:
-            return 9
+            if walls['top']:
+                return 6  # Left and right, top
+            elif walls['bottom']:
+                return 7  # Left and right, bottom
+            else:
+                return 1  # Left and right only
+        elif walls['top']:
+            return 2  # Top only
+        elif walls['bottom']:
+            return 8  # Bottom only
+        elif walls['left']:
+            return 9  # Left only
+        elif walls['right']:
+            return 10  # Right only
         else:
-            raise ValueError("Invalid wall configuration")
+            return 11  # No walls
 
     return [[cell_to_number(cell) for cell in row] for row in maze]
 
