@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from random import randint, choice
+from random import choice
 
 maze_size = 8
 wall_codes = {
@@ -28,41 +28,8 @@ wall_codes = {
     'l_b':      14,
 }
 
-traceback_path = [] #[0, 0]
-visited_blocks = []
-
-def print_maze(maze_array):
-    for row in maze_array:
-        print(row)
-
-def next_xy(current_pos):
-    x = current_pos[0]
-    y = current_pos[1]
-    directions = [
-        [x + 1  ,   y       ],
-        [x      ,   y + 1   ],
-        [x - 1  ,   y       ],
-        [x      ,   y - 1   ]
-    ]
-
-    available = []
-    for xy in directions:
-        newx = xy[0]
-        newy = xy[1]
-        # if (xy not in visited_blocks and
-        if (newx >= 0 and
-            newx < maze_size and
-            newy >= 0 and
-            newy < maze_size):
-            available.append(xy)
-
-    if len(available) == 0:
-        print('out of bounds')
-        # return traceback_path.pop()
-        return current_pos
-
-    new_pos = choice(available)
-    return new_pos
+traceback_path = list()
+visited_blocks = set()
 
 def init_maze(size):
     maze_array = []
@@ -75,7 +42,42 @@ def init_maze(size):
 
     return maze_array
 
-print_maze(init_maze(maze_size))
+def print_maze(maze_array):
+    for row in maze_array:
+        print(row)
+
+# only visited unvisited nodes unless they are on the trace-back path
+def next_xy(last_pos):
+    visited_blocks.add(tuple(last_pos))
+
+    x = last_pos[0]
+    y = last_pos[1]
+
+    directions = [
+        [x + 1  ,   y       ],
+        [x      ,   y + 1   ],
+        [x - 1  ,   y       ],
+        [x      ,   y - 1   ]
+    ]
+
+    available = []
+
+    for xy in directions:
+        newx = xy[0]
+        newy = xy[1]
+        if (tuple(xy) not in visited_blocks and
+            newx >= 0 and
+            newx < maze_size and
+            newy >= 0 and
+            newy < maze_size):
+            available.append(xy)
+
+    if len(available) == 0:
+        return traceback_path.pop()
+
+    traceback_path.append(last_pos)
+    next_pos = choice(available)
+    return next_pos
 
 def draw_path():
     current_pos = [0, 0]
@@ -84,4 +86,7 @@ def draw_path():
         print(current_pos)
         last_pos = current_pos
         current_pos = next_xy(current_pos)
+    print(len(visited_blocks))
 
+# maze = init_maze(maze_size)
+draw_path()
