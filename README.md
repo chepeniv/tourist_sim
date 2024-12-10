@@ -81,8 +81,6 @@ Open the Game: Navigate to http://127.0.0.1:5000 in your browser.
 ---
 
 ## 📂 **Project Structure**  
-
-```plaintext
 ├── README.md                  # Project documentation  
 ├── __init__.py                # Python package initializer  
 ├── __pycache__/               # Compiled Python files  
