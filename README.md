@@ -64,14 +64,15 @@ In **Sunburn Shores**, the dream of a perfect vacation has turned into a nightma
 ├── utility/                   
 │   ├── create_json.py         # Script to generate JSON from CSV  
 │   ├── fetch_interaction.py   # Fetch and handle encounters logic  
+---
 
-🕹️ Gameplay
+## 🕹️ **Gameplay**
 1. Start the Game: Launch the Flask server and navigate to the homepage.
 2. Interact: Explore the city and meet various characters with unique stories and challenges.
 3. Escape: Navigate dynamically generated mazes and make critical decisions to find your way out.
 4. Survive: Manage your money and health carefully—every interaction affects your resources.
 
-💡 How to Run
+## 💡 **How to Run**
 Clone the repository:
 
 git clone https://github.com/yourusername/tourist_sim.git
@@ -86,7 +87,8 @@ Run App:
 python frontend.py
 Open your browser and go to http://127.0.0.1:5000.
 
-✨ Authors
-Malik Vance (ATLAS SCHOOL, GitHub: SpaceDandy15)
-Michael Ballou (ATLAS SCHOOL, GitHub: MBall0u)
-Jose N. Olmos AKA CHEPE (ATLAS SCHOOL, GitHub: chepeniv)
+## ✨ **Authors**  
+
+- **Malik Vance** (ATLAS SCHOOL, GitHub: [SpaceDandy15](https://github.com/SpaceDandy15))  
+- **Michael Ballou** (ATLAS SCHOOL, GitHub: [MBall0u](https://github.com/MBall0u))  
+- **Jose N. Olmos AKA CHEPE** (ATLAS SCHOOL, GitHub: [chepeniv](https://github.com/chepeniv))  
