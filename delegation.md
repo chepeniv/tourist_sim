@@ -2,10 +2,15 @@
 
 ## in progress
 
+### top priority
+
+- [ ] readme
+- [ ] slide show
 - [ ] standardize map file layout
 	- [ ] reach consensus
 
 ### Malik :
+
 - [ ] handwrite .csv data
 - [ ] create .py that jsonifies it to data/encounters.json
 - [ ] create scripts/encounter_loader.js that take json file
@@ -21,15 +26,8 @@
 		- [ ] positive, negative, neutral
 
 ### chepe
-- [ ] create stats mgmt logic
-	- [ ] add dummy button to dummy encounter
-	- [ ] increment/decrement health and cash
-		- [ ] add color feedback
 
-### top priority
-
-- [ ] slide show
-- [ ] readme
+- [ ] add inventory selection consequences
 
 ### bottom priority
 
@@ -42,8 +40,10 @@
 	- [ ] obstacles
 	- [ ] city layouts
 
-
 ### maze generator
+
+- [ ] adjust stat colors
+- [ ] reduce inventory slots
 
 - [ ] 12x12 format being generated
 - [ ] one entrance and then one exit on each side
@@ -74,3 +74,12 @@
 	- [x] trigger encounter upon arrival
 		- [x] prevent further movement
 		- [x] update encounter box
+- [x] encounter mugshot logic - **chepe**
+- [x] create stats mgmt logic - **chepe**
+	- [x] add dummy button to dummy encounter
+	- [x] increment/decrement health and cash
+		- [x] add color feedback
+- [x] core inventory mgmt logic **chepe**
+- [x] add inventory interaction
+- [x] add inventory-encounter interaction
+- [x] prevent interaction blocks from spawning over each other **chepe**
