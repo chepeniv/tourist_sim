@@ -68,12 +68,12 @@ cd tourist_sim
 Install the Dependencies:
 
 ***
-Copy code
+Copy code:
 pip install -r requirements.txt
 Run the Application:
 
 ***
-Copy code
+Copy code:
 python frontend.py
 
 Open the Game: Navigate to http://127.0.0.1:5000 in your browser.
