@@ -2,27 +2,18 @@
 
 from random import randint, choice
 
-maze_size = 12
-
-(none, left, right, left_right) = (0, 1, 2, 3)
-(top, bottom, top_bottom) = (1, 2, 3)
+maze_size = 4
 
 # codes indicate which walls are _present_
+# as walls are removed these numbers should
+# never increase
 wall_codes = [
     # x,  l,  r, lr
-    [ 0,  1,  2,  3], # x
+    [ 0,  1,  2,  3], # y
     [ 4,  5,  6,  7], # t
     [ 8,  9, 10, 11], # b
     [12, 13, 14, 15], # tb
 ]
-
-wall_indeces = {
-            # prev      next
-    'up':    (bottom,   top),
-    'right': (left,     right),
-    'down':  (top,      bottom),
-    'left':  (right,    left)
-}
 
 traceback_path = list()
 visited_blocks = set()
@@ -34,7 +25,7 @@ def init_maze(size):
     for x in range(size):
         maze_row.append([3, 3]) # all blocks closed
     for x in range(size):
-        maze_array.append(maze_row)
+        maze_array.append(maze_row.copy())
 
     return maze_array
 
@@ -68,36 +59,36 @@ def next_xy(last_pos):
             available.append(item)
 
     if len(available) == 0:
-        return traceback_path.pop()
+        prev_pos = traceback_path.pop()
+        for (path, pos) in directions.items():
+            if prev_pos == pos:
+                return (path, prev_pos)
 
     traceback_path.append(last_pos)
     return choice(available)
 
 def draw_path(maze):
-    init_pos = (0, 0)
-    next_pos = next_xy(init_pos)
-    while next_pos != (0, 0):
-        last_pos = next_pos
+    next_pos = (0, 0)
+    while True:
+        (last_y, last_x) = next_pos
+        (path, next_pos) = next_xy(next_pos)
 
-        (path, next_pos) = next_xy(last_pos)
-        (prev_idx, next_idx) = wall_indeces.get(path)
+        # trace-back should automatically remove the remaining half-wall
+        (code_y, code_x) = maze[last_y][last_x]
 
-        last_y = last_pos[0]
-        last_x = last_pos[1]
-        next_y = next_pos[0]
-        next_x = next_pos[1]
+        if path == 'up':
+            code_y = (code_y - 1) if code_y in (1, 3) else code_y
+        elif path == 'down':
+            code_y = (code_y - 2) if code_y in (2, 3) else code_y
+        elif path == 'right':
+            code_x = (code_x - 2) if code_x in (2, 3) else code_x
+        elif path == 'left':
+            code_x = (code_x - 1) if code_x in (1, 3) else code_x
 
-        # solution / simplification the trace-back
-        # will automatically remove the remaining half-wall
-        (last_tb, last_lr) = maze[last_y][last_x]
-        (next_tb, next_lr) = maze[next_y][next_x]
+        maze[last_y][last_x] = (code_y, code_x)
 
-        if path in ('up, down'):
-            maze[last_y][last_x] = (prev_idx, last_lr)
-            maze[next_y][next_x] = (next_idx, next_lr)
-        else:
-            maze[last_y][last_x] = (last_tb, prev_idx)
-            maze[next_y][next_x] = (next_tb, next_idx)
+        if next_pos == (0, 0):
+            break
 
 maze = init_maze(maze_size)
 draw_path(maze)
