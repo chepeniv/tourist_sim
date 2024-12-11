@@ -21,12 +21,6 @@
 </head>
 
 <body>
-    <!-- Background Audio with controls for manual playback -->
-    <audio id="audio" autoplay loop controls>
-      <source src="{{ url_for('static', filename='assets/city.mp3') }}" type="audio/mp3">
-      Your browser does not support the audio element.
-    </audio>
-
 	<div class="banner">
 		<h1>Tourist Simulator Deluxe</h1>
 	</div>
@@ -94,5 +88,12 @@
 			</div>
 		</span>
 	</div>
+
+    <!-- Background Audio with controls for manual playback -->
+    <audio id="audio" autoplay loop controls>
+      <source src="{{ url_for('static', filename='assets/city.mp3') }}" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+
 </body>
 </html>
