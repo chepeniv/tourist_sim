@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from random import randint, choice
+from random import choice
 
 maze_size = 4
 
@@ -73,9 +73,9 @@ def draw_path(maze):
         (last_y, last_x) = next_pos
         (path, next_pos) = next_xy(next_pos)
 
-        # trace-back should automatically remove the remaining half-wall
         (code_y, code_x) = maze[last_y][last_x]
 
+        # trace-back automatically removes the remaining half-wall
         if path == 'up':
             code_y = (code_y - 1) if code_y in (1, 3) else code_y
         elif path == 'down':
@@ -99,10 +99,27 @@ def maze_encoder(row):
         encoded_row.append(code)
     return encoded_row
 
+def maze_compressor(maze):
+    comp_maze = []
+    height = range(len(maze))
+    width = range(int((len(maze) / 2)))
+    for row in height:
+        new_row = []
+        for column in width:
+            shift = row % 2
+            column = column * 2 + shift
+            code = maze[row][column]
+            new_row.append(code)
+        comp_maze.append(new_row)
+    return comp_maze
+
 maze = init_maze(maze_size)
 
 draw_path(maze)
 print_maze(maze)
 
-maze2 = map(maze_encoder, maze)
+maze2 = list(map(maze_encoder, maze))
 print_maze(maze2)
+
+maze3 = maze_compressor(maze2)
+print_maze(maze3)
