@@ -91,6 +91,7 @@ function createEncounters (size) {
 
     if (!isTaken) {
       randBlock.addClass('encounter');
+      randBlock.append('<div class="imageDiv"></div>')
     } else {
       i--;
     }
@@ -129,13 +130,14 @@ function engageEncounter () {
 
 function endEncounter () {
   $('.items-table').removeClass('ready-selection');
-  $('.player-pos').removeClass('encounter active');
+  $('.player-pos').removeClass('encounter active imageDiv');
   $('.inventory h3').text('Inventory');
   $('.encounter-box h3').text('Encounters');
   $('.encounter-box img').hide();
   $('.encounter-box p').hide();
   $('.interaction').hide();
   $('.response').hide();
+  
 }
 
 $(function () {
