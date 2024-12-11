@@ -47,8 +47,8 @@ const wallEncodings = [
 
 // used to confine and center entry and exits
 function padNum (size) {
-  const center = size / 2;
-  return Math.floor((Math.random() * center) + (center / 2));
+  const center = size - 6;
+  return Math.floor((Math.random() * center) + 3);
 }
 
 function buildRow (size, y) {
@@ -99,9 +99,15 @@ function setExits (size) {
   const rightEdge = `.${rightExit} .${lastColumn}`;
   const bottomEdge = `.${lastRow} .${bottomExit}`;
 
-  $(topEdge).addClass('exit-top');
-  $(rightEdge).addClass('exit-right');
-  $(bottomEdge).addClass('exit-bottom');
+  const randEntry = Math.floor(Math.random() * 3);
+
+  if (randEntry === 0) {
+    $(topEdge).addClass('exit-top');
+  } else if (randEntry === 1) {
+    $(rightEdge).addClass('exit-right');
+  } else {
+    $(bottomEdge).addClass('exit-bottom');
+  }
 }
 
 function buildMazeGrid (size) {
