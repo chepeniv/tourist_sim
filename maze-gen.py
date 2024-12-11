@@ -25,7 +25,8 @@ wall_indeces = {
 }
 
 traceback_path = list()
-visited_blocks = set()
+global visited_blocks
+visited_blocks = {'visited_blocks': set()}
 
 def init_maze(size):
     maze_array = []
@@ -44,27 +45,35 @@ def print_maze(maze_array):
 
 # only visited unvisited nodes unless they are on the trace-back path
 def next_xy(last_pos):
-    visited_blocks.add(last_pos)
+    global visited_blocks
+    print(f"last_pos: {last_pos}")
+    if isinstance(last_pos, str):
+        last_x, last_y = map(int, last_pos.split(','))
+    else:
+        last_x, last_y = last_pos
 
-    y = last_pos[0] # row
-    x = last_pos[1] # column
+    visited_blocks['visited_blocks'].add((last_x, last_y))
+
     directions = {
-        'up':    (y - 1, x    ),
-        'right': (y    , x + 1),
-        'down':  (y + 1, x    ),
-        'left':  (y    , x - 1)
+        'up':    (-1, 0),
+        'right': (0, 1),
+        'down':  (1, 0),
+        'left':  (0, -1)
     }
 
     available = []
     for item in directions.items():
-        xy = item[1]
-        (newy, newx) = xy
+        dir_name, (dx, dy) = item
+        print(f"last_x: {last_x}")
+        print(f"dx: {dx}")
+        print(f"last_y: {last_y}")
+        print(f"dy: {dy}")
+        new_x = last_x + dx
+        new_y = last_y + dy
 
-        if (xy not in visited_blocks and
-            newx >= 0 and
-            newx < maze_size and
-            newy >= 0 and
-            newy < maze_size):
+        if (new_x, new_y) not in visited_blocks['visited_blocks'] and \
+            0 <= new_x < maze_size and \
+            0 <= new_y < maze_size:
             available.append(item)
 
     if len(available) == 0:
