@@ -14,7 +14,7 @@ function inventoryRow (size) {
 
 // drop items across the map randomly
 function dropRandItems (size) {
-  for (let i = 0; i < size; i++) {
+  for (let i = 0; i < 8; i++) {
     const randX = Math.floor(Math.random() * size);
     const randY = Math.floor(Math.random() * size);
     const randBlock = $(`.${randY} .${randX}`);
@@ -78,8 +78,12 @@ function initItemInteraction () {
 }
 
 $(function () {
+  $.get('static/data/maze_data.json', function (data) {
+    const mazeSize = data.length;
+    dropRandItems(mazeSize);
+  }, 'json');
+
   inventoryTable(tableSize);
-  dropRandItems(8);
 
   $('html').on('keydown', function (e) {
     initItemInteraction();

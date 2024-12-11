@@ -79,7 +79,7 @@ function respondNegatively () {
 
 // populate the map with encounters randomly
 function createEncounters (size) {
-  for (let i = 0; i < size; i++) {
+  for (let i = 0; i < 8; i++) {
     const randX = Math.floor(Math.random() * size);
     const randY = Math.floor(Math.random() * size);
     const randBlock = $(`.${randY} .${randX}`);
@@ -139,7 +139,11 @@ function endEncounter () {
 }
 
 $(function () {
-  createEncounters(8);
+  $.get('static/data/maze_data.json', function (data) {
+    const mazeSize = data.length;
+    createEncounters(mazeSize);
+  }, 'json');
+
   setStat(health, initHealth);
   setStat(cash, initCash);
 
