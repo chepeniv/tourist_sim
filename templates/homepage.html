@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, inital-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tourist Simulator Deluxe</title>
 
 	<link rel="stylesheet" href="static/styles/homepage.css">
@@ -14,80 +14,86 @@
 
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="static/scripts/homepage.js"></script>
-	<script type="text/javascript" src="static/scripts/maze_grid.js"></script>
-	<script type="text/javascript" src="static/scripts/maze_draw.js"></script>
+	<script type="text/javascript" src="static/scripts/maze.js"></script>
 	<script type="text/javascript" src="static/scripts/navigation.js"></script>
 	<script type="text/javascript" src="static/scripts/encounters.js"></script>
 	<script type="text/javascript" src="static/scripts/inventory.js"></script>
 </head>
 
 <body>
-<div class="banner">
-	<h1>Tourist Simulator Deluxe</h1>
-</div>
-
-<!-- <a id="backend" href="backend/backend.html">backend</a> -->
-
-<div class="game">
-	<div class="map">
-		<div class="map-bg"></div>
-		<table class="maze"></table>
+	<div class="banner">
+		<h1>Tourist Simulator Deluxe</h1>
 	</div>
 
-	<span class="hud">
-		<div class="stats-box">
-			<h3>Stats</h3>
-	accept		<h4>Health</h4>
-			<div class="health"></div>
-			<h4>Cash</h4>
-			<div class="cash"></div>
+	<!-- <a id="backend" href="backend/backend.html">backend</a> -->
+
+	<div class="game">
+		<div class="map">
+			<div class="map-bg"></div>
+			<table class="maze"></table>
 		</div>
 
-		<div class="inventory">
-			<h3>Inventory</h3>
-			<table class="items-table"></table>
-		</div>
+		<span class="hud">
+			<div class="stats-box">
+				<h3>Stats</h3>
+				<h4>Health</h4>
+				<div class="health"></div>
+				<h4>Cash</h4>
+				<div class="cash"></div>
+			</div>
 
-		<div class="encounter-box">
-			<h3>Encounters</h3>
-			<p></p>
-			<img src="../static/assets/images/mugshots/rageguy.png"></img>
+			<div class="inventory">
+				<h3>Inventory</h3>
+				<table class="items-table"></table>
+			</div>
 
-			<span class="interaction">
-				<div class="options">
-					<div id="dismiss">
-						<button>decline</button>
-					</div>
-					<div id="engage">
-						<button>accept</button>
-					</div>
-				</div>
-			</span>
+			<div class="encounter-box">
+				<h3>Encounters</h3>
+				<p></p>
+				<img src="../static/assets/images/mugshots/rageguy.png"></img>
 
-			<span class="response">
-				<div class="options">
-					<div id="rude">
-						<button>be rude</button>
+				<span class="interaction">
+					<div class="options">
+						<div id="dismiss">
+							<button>decline</button>
+						</div>
+						<div id="engage">
+							<button>accept</button>
+						</div>
 					</div>
-					<div id="mellow">
-						<button>be chill</button>
-					</div>
-					<div id="polite">
-						<button>be nice</button>
-					</div>
-				</div>
-			</span>
+				</span>
 
-			<span class="consequence">
-				<div class="options">
-					<div id="ok">
-						<button>ok</button>
+				<span class="response">
+					<div class="options">
+						<div id="rude">
+							<button>be rude</button>
+						</div>
+						<div id="mellow">
+							<button>be chill</button>
+						</div>
+						<div id="polite">
+							<button>be nice</button>
+						</div>
 					</div>
-				</div>
-			</span>
+				</span>
 
-		</div>
-	</span>
-</div>
+				<span class="consequence">
+					<div class="options">
+						<div id="ok">
+							<button>ok</button>
+						</div>
+					</div>
+				</span>
+
+			</div>
+		</span>
+	</div>
+
+    <!-- Background Audio with controls for manual playback -->
+    <audio id="audio" autoplay loop controls>
+      <source src="{{ url_for('static', filename='assets/city.mp3') }}" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+
 </body>
 </html>
