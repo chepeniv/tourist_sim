@@ -2,38 +2,43 @@
 /* global $ */
 
 // if encoded with prime numbers use a dictionary
+// ref: 00 02 03 05 07 11 13 17 19 23 29 31 37 41 43
 const wallEncodings = [
-  /* 00 - 00 */ 'no-wall',
+  'no-wall',
+  'left-wall',
+  'right-wall',
+  'left-wall right-wall',
 
-  /* 01 - 02 */ 'left-wall',
-  /* 02 - 03 */ 'top-wall',
-  /* 03 - 05 */ 'right-wall',
-  /* 04 - 07 */ 'bottom-wall',
+  'top-wall',
+  'left-wall top-wall',
+  'right-wall top-wall',
+  'left-wall right-wall top-wall',
 
-  /* 05 - 11 */ 'right-wall left-wall',
-  /* 06 - 13 */ 'top-wall bottom-wall',
+  'bottom-wall',
+  'left-wall bottom-wall',
+  'right-wall bottom-wall',
+  'left-wall right-wall bottom-wall',
 
-  /* 07 - 17 */ 'right-wall bottom-wall left-wall',
-  /* 08 - 19 */ 'top-wall left-wall bottom-wall',
-  /* 09 - 23 */ 'right-wall top-wall left-wall',
-  /* 10 - 29 */ 'top-wall right-wall bottom-wall',
-
-  /* 11 - 31 */ 'left-wall top-wall',
-  /* 12 - 37 */ 'right-wall top-wall',
-  /* 13 - 41 */ 'right-wall bottom-wall',
-  /* 14 - 43 */ 'left-wall bottom-wall'
+  'top-wall bottom-wall',
+  'left-wall top-wall bottom-wall',
+  'right-wall top-wall bottom-wall '
 ];
 
+// default 12x12 maze
 const initMaze = [
-  [0, 4, 4, 3],
-  [14, 11, 5, 1],
-  [4, 10, 1, 6],
-  [6, 3, 7, 4],
+  [7, 6, 6, 6, 12, 6],
+  [3, 10, 3, 3, 4, 3],
+  [9, 5, 9, 3, 6, 6],
+  [6, 12, 14, 11, 7, 2],
+  [3, 9, 9, 9, 10, 6],
+  [5, 3, 9, 5, 4, 3],
 
-  [4, 6, 1, 6],
-  [6, 12, 11, 4],
-  [3, 7, 5, 6],
-  [0, 1, 2, 1]
+  [3, 3, 1, 9, 7, 12],
+  [3, 3, 3, 12, 12, 6],
+  [3, 9, 3, 3, 4, 3],
+  [10, 6, 9, 12, 3, 6],
+  [3, 2, 9, 5, 6, 14],
+  [12, 9, 12, 13, 12, 10]
 ];
 
 // fetch generated maze from file

@@ -1,7 +1,7 @@
 #!/usr/bin/node
 /* global $ */
 
-const mazeSize = 8;
+const mazeSize = 12;
 const lastRow = mazeSize - 1;
 const lastColumn = lastRow;
 
