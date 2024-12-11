@@ -1,8 +1,13 @@
 #!/usr/bin/python3
 
+from sys import argv
+# from json import argv
 from random import choice
 
 maze_size = 4
+
+# add var-args
+# append to json file as json
 
 # codes indicate which walls are _present_
 # as walls are removed these numbers should
@@ -113,13 +118,30 @@ def maze_compressor(maze):
         comp_maze.append(new_row)
     return comp_maze
 
-maze = init_maze(maze_size)
+def parse_input():
+    if len(argv) >= 2:
+        size = argv[1]
+        size = int(size) if size.isdecimal() else 8
 
-draw_path(maze)
-print_maze(maze)
+        if size > 128:
+            size = 128
+        elif size < 8:
+            size = 8
 
-maze2 = list(map(maze_encoder, maze))
-print_maze(maze2)
+        print(size)
+    else:
+        print('no argument provided')
 
-maze3 = maze_compressor(maze2)
-print_maze(maze3)
+if __name__ == '__main__':
+    parse_input()
+
+
+    # maze = init_maze(maze_size)
+    # draw_path(maze)
+    # print_maze(maze)
+
+    # maze2 = list(map(maze_encoder, maze))
+    # print_maze(maze2)
+
+    # maze3 = maze_compressor(maze2)
+    # print_maze(maze3)
