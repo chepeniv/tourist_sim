@@ -139,7 +139,7 @@ def parse_input():
 
 def export_json(maze):
     maze_data = dumps(maze)
-    with open('data/maze_data.json', mode='w') as json_file:
+    with open('static/data/maze_data.json', mode='w') as json_file:
         json_file.write(maze_data)
 
 def generate_maze(size):
@@ -151,5 +151,5 @@ def generate_maze(size):
     maze = encode_maze(maze)
     maze = compresse_maze(maze)
 
-    # export_json(maze)
+    export_json(maze)
     return maze
