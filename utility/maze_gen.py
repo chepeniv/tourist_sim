@@ -139,7 +139,7 @@ def parse_input():
 
 def export_json(maze):
     maze_data = dumps(maze)
-    with open('maze_data.json', mode='w') as json_file:
+    with open('../data/maze_data.json', mode='w') as json_file:
         json_file.write(maze_data)
 
 if __name__ == '__main__':
