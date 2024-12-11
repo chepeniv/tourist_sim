@@ -1,17 +1,15 @@
 #!/usr/bin/python3
 
 from sys import argv
-# from json import argv
+from json import dumps
 from random import choice
 
-maze_size = 4
-
-# add var-args
-# append to json file as json
-
-# codes indicate which walls are _present_
+# wall codes indicate which walls are _present_
 # as walls are removed these numbers should
 # never increase
+
+traceback_path = list()
+visited_blocks = set()
 wall_code = [
     # x,  l,  r, lr
     [ 0,  1,  2,  3], # y
@@ -19,9 +17,6 @@ wall_code = [
     [ 8,  9, 10, 11], # b
     [12, 13, 14, 15], # tb
 ]
-
-traceback_path = list()
-visited_blocks = set()
 
 def init_maze(size):
     maze_array = []
@@ -39,7 +34,7 @@ def print_maze(maze_array):
         print(row)
 
 # only visited unvisited nodes unless they are on the trace-back path
-def next_xy(last_pos):
+def next_block(last_pos, limit):
     visited_blocks.add(last_pos)
 
     y = last_pos[0] # row
@@ -58,9 +53,9 @@ def next_xy(last_pos):
 
         if (xy not in visited_blocks and
             newx >= 0 and
-            newx < maze_size and
+            newx < limit and
             newy >= 0 and
-            newy < maze_size):
+            newy < limit):
             available.append(item)
 
     if len(available) == 0:
@@ -74,9 +69,10 @@ def next_xy(last_pos):
 
 def draw_path(maze):
     next_pos = (0, 0)
+    limit = len(maze)
     while True:
         (last_y, last_x) = next_pos
-        (path, next_pos) = next_xy(next_pos)
+        (path, next_pos) = next_block(next_pos, limit)
 
         (code_y, code_x) = maze[last_y][last_x]
 
@@ -95,7 +91,7 @@ def draw_path(maze):
         if next_pos == (0, 0):
             break
 
-def maze_encoder(row):
+def encode_row(row):
     encoded_row = []
     for columm in row:
         tb = columm[0]
@@ -104,8 +100,11 @@ def maze_encoder(row):
         encoded_row.append(code)
     return encoded_row
 
-def maze_compressor(maze):
-    comp_maze = []
+def encode_maze(maze):
+    return list(map(encode_row, maze))
+
+def compresse_maze(maze):
+    compressed = []
     height = range(len(maze))
     width = range(int((len(maze) / 2)))
     for row in height:
@@ -115,33 +114,38 @@ def maze_compressor(maze):
             column = column * 2 + shift
             code = maze[row][column]
             new_row.append(code)
-        comp_maze.append(new_row)
-    return comp_maze
+        compressed.append(new_row)
+    return compressed
 
 def parse_input():
+    default = 12
+    size = default
+
     if len(argv) >= 2:
         size = argv[1]
-        size = int(size) if size.isdecimal() else 8
+        if not size.isdecimal():
+            print('unparsable input, setting size to delault')
+            return default
 
+        size = int(size)
         if size > 128:
             size = 128
         elif size < 8:
             size = 8
-
-        print(size)
     else:
-        print('no argument provided')
+        print('no argument provided, setting size to delault')
+
+    return size
+
+def export_json(maze):
+    maze_data = dumps(maze)
+    with open('maze_data.json', mode='w') as json_file:
+        json_file.write(maze_data)
 
 if __name__ == '__main__':
-    parse_input()
-
-
-    # maze = init_maze(maze_size)
-    # draw_path(maze)
-    # print_maze(maze)
-
-    # maze2 = list(map(maze_encoder, maze))
-    # print_maze(maze2)
-
-    # maze3 = maze_compressor(maze2)
-    # print_maze(maze3)
+    size = parse_input()
+    maze = init_maze(size)
+    draw_path(maze)
+    maze = encode_maze(maze)
+    maze = compresse_maze(maze)
+    export_json(maze)
