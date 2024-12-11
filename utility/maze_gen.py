@@ -142,10 +142,12 @@ def export_json(maze):
     with open('../data/maze_data.json', mode='w') as json_file:
         json_file.write(maze_data)
 
-if __name__ == '__main__':
-    size = parse_input()
+def generate_maze(size):
+    # size = parse_input()
     maze = init_maze(size)
     draw_path(maze)
+
     maze = encode_maze(maze)
     maze = compresse_maze(maze)
+
     export_json(maze)
