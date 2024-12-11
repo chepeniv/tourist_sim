@@ -62,17 +62,17 @@ In **Sunburn Shores**, the dream of a perfect vacation has turned into a nightma
 ## 💡 **How to Run**
 
 ### Clone the Repository:
-```bash
+***
 git clone https://github.com/yourusername/tourist_sim.git
 cd tourist_sim
 Install the Dependencies:
 
-'''bash
+***
 Copy code
 pip install -r requirements.txt
 Run the Application:
 
-'''bash
+***
 Copy code
 python frontend.py
 
