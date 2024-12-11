@@ -7,7 +7,7 @@ maze_size = 4
 # codes indicate which walls are _present_
 # as walls are removed these numbers should
 # never increase
-wall_codes = [
+wall_code = [
     # x,  l,  r, lr
     [ 0,  1,  2,  3], # y
     [ 4,  5,  6,  7], # t
@@ -90,6 +90,19 @@ def draw_path(maze):
         if next_pos == (0, 0):
             break
 
+def maze_encoder(row):
+    encoded_row = []
+    for columm in row:
+        tb = columm[0]
+        lr = columm[1]
+        code = wall_code[tb][lr]
+        encoded_row.append(code)
+    return encoded_row
+
 maze = init_maze(maze_size)
+
 draw_path(maze)
 print_maze(maze)
+
+maze2 = map(maze_encoder, maze)
+print_maze(maze2)
