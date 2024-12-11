@@ -1,5 +1,6 @@
 #!/usr/bin/node
 /* global $ */
+/* global location */
 
 // key codes
 const left = 37;
@@ -15,10 +16,11 @@ function interactionEngaged (position) {
 }
 
 function reachedExit () {
-  $('.dialogue p').text('exit reached!');
+  $('.encounter-box h3').text('exit reached!');
   setTimeout(function () {
-    $('.dialogue p').text('');
-  }, 250);
+    $('.encounter-box h3').text('');
+    location.reload(true);
+  }, 1000);
 }
 
 function moveRight (oldPos) {
